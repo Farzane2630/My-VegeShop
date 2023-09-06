@@ -1,0 +1,33 @@
+$mainGreen : #82ae46;
+
+.filter {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin: 0%;
+  margin-top: 30px;
+
+  .filter-item {
+    color: $mainGreen;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 5px 20px;
+
+    &:hover{
+      cursor: pointer;
+    }
+
+    &:active {
+      background-color: $mainGreen;
+      color: #fff;
+      border-radius: 6px;
+    }
+  }
+}
+
+.products-wrapper {
+  padding: 1rem 6rem;
+}
+

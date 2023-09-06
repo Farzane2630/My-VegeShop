@@ -1,0 +1,97 @@
+@mixin textCenter($size, $weight, $color, $family, $style) {
+  text-align: center;
+  font-size: $size;
+  font-weight: $weight;
+  color: $color;
+  font-family: $family;
+  font-style: $style;
+}
+$mainGreen: #82ae46;
+
+.product-info-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  // column-gap: 2rem;
+  padding: 5vw 10vw;
+
+  .img-section,
+  .txt-section {
+    width: 50%;
+    display: flex;
+    flex-direction: column !important;
+  }
+
+  .product-img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+  }
+
+  .img-section {
+    justify-content: center;
+    &:hover{
+      cursor: zoom-in
+    }
+  }
+
+  .product-title {
+    @include textCenter(30px, 400, black, ("Poppins", Arial, sans-serif), _);
+    text-align: left;
+  }
+
+  .statistical-info {
+    display: flex;
+    column-gap: 30%;
+    .sold-count {
+      font-size: 20px;
+      color: #bbb;
+      .sold {
+        color: black;
+      }
+    }
+  }
+
+  .price {
+    @extend .product-title;
+    line-height: 1.8;
+  }
+
+  .more-info {
+    @include textCenter(15px, 400, gray, ("Poppins", Arial, sans-serif), _);
+    text-align: left;
+  }
+
+  .minus,
+  .plus,
+  .product-count {
+    height: 40px !important;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    color: #82ae46;
+    padding: 10px 20px;
+    background: transparent !important;
+    border-radius: 0 !important;
+    font-size: 14px;
+  }
+
+  .product-count {
+    margin: 0 10px;
+  }
+
+  .add-to-cart {
+    margin-top: 30px;
+    border: 1px solid #000000 !important;
+    background: #000000 !important;
+    border-radius: 40px !important;
+    color: #fff !important;
+    width: fit-content;
+    padding: 20px 60px;
+
+    &:hover {
+      background: $mainGreen !important;
+      border: none !important;
+    }
+  }
+}

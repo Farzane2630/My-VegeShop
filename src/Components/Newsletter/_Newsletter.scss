@@ -1,0 +1,72 @@
+$mainGreen: #82ae46;
+
+@mixin flexCenter() {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.newsletter-container {
+  padding: 3rem 6rem;
+  margin: 15px 0;
+  background-color: #f7f6f2;
+  @include flexCenter();
+  position: relative !important;
+}
+
+.subscribe-container {
+  height: 50px;
+  width: 100%;
+  @include flexCenter();
+
+  .subscribe-form {
+    outline: none;
+    border: unset !important;
+    width: 70%;
+    height: 50px;
+    background-color: #fff;
+    color: gray;
+    padding: 10px;
+  }
+
+  .subscribe-btn {
+    border: none !important;
+    border-radius: unset !important;
+    background-color: $mainGreen !important;
+    font-size: 12px;
+    width: fit-content;
+    height: 50px;
+    padding: 5px;
+    box-shadow: none;
+
+    &:hover {
+      color: gray !important;
+      box-shadow: none;
+    }
+  }
+}
+
+.swipe-up {
+  @include flexCenter();
+  background-color: $mainGreen;
+  border-radius: 50%;
+  padding: 10px;
+  flex-direction: column;
+  width: 50px;
+  height: 50px;
+  margin-top: -3%;
+  left: 50%;
+  position: absolute;
+  z-index: 9999 !important;
+
+  button {
+    @include flexCenter();
+    border: none;
+    outline: none !important;
+  }
+  .icon {
+    color: #fff;
+    margin: 0;
+    align-self: center;
+  }
+}

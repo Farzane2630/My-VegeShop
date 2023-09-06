@@ -1,0 +1,57 @@
+$mainGreen: #82ae46;
+
+@mixin flexCenter($direction, $justify) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: center;
+  text-align: center;
+}
+
+.category-grid-container {
+  @include flexCenter(row, center);
+
+  .grid-item {
+    @include flexCenter(column, center);
+    width: 25%;
+    // padding: 0 10px;
+
+    .image-container {
+      @include flexCenter(column, flex-end);
+      align-items: baseline;
+      background-size: cover;
+      background-position: center;
+      width: 100%;
+      height: 250px;
+      margin: 5px;
+      border: none;
+    }
+
+    .shop-part {
+      @include flexCenter(column, flex-start);
+    }
+
+    .category-title {
+      width: fit-content;
+      padding: 3px 5px;
+      background-color: $mainGreen;
+      font-size: 18px;
+      font-weight: 500;
+      color: #fff;
+      align-self: baseline;
+      justify-self: baseline;
+    }
+  }
+}
+
+Button {
+  border-radius: 20px !important;
+  background-color: $mainGreen !important;
+  font-weight: bold !important;
+
+  &:hover {
+    background-color: unset !important;
+    color: $mainGreen !important;
+    border: $mainGreen thin solid !important;
+  }
+}

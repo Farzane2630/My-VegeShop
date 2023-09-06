@@ -1,0 +1,21 @@
+@mixin flexCenter($direction, $justify, $text) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: center;
+  text-align: $text;
+}
+
+$mainGreen: #82ae46;
+
+.topbar-contact-container {
+  background-color: $mainGreen;
+  color: #ffffff;
+  .topbar-contact-info {
+    padding: 5px;
+    @include flexCenter(row, center, center);
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

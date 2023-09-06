@@ -1,0 +1,63 @@
+$mainGreen: #82ae46;
+
+@mixin flexCenter($direction, $justify, $align, $text) {
+  display: flex !important;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  text-align: $text;
+}
+
+.testimony-container {
+  @include flexCenter(column, center, center, _);
+}
+
+.photo-container {
+  width: 100px;
+  height: 100px;
+  position: relative;
+
+  .customer-img {
+    object-fit: contain;
+    width: inherit;
+    height: inherit;
+    border-radius: 50%;
+  }
+
+  .qoute-icon {
+    width: 15px;
+    height: 15px;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 7%;
+    left: 70%;
+    @include flexCenter(column, center, center, _);
+
+    .icon {
+      color: $mainGreen;
+      font-size: 30px;
+      rotate: 180deg;
+    }
+  }
+}
+
+.body {
+  @include flexCenter(row, center, center, _);
+
+  .testimony-txt {
+    text-align: center;
+    color: rgba(0, 0, 0, 0.8);
+    font-family: "Poppins", Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.8;
+    font-weight: 400;
+  }
+}
+
+.name {
+  font-weight: 400;
+  font-size: 18px;
+  color: #000000;
+}

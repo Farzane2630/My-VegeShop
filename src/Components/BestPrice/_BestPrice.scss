@@ -1,0 +1,63 @@
+$mainGreen: #82ae46;
+
+@mixin flexCenter($direction, $justify, $text) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: center;
+  text-align: $text;
+}
+
+@mixin textCenter($size, $weight, $color, $family, $style) {
+  text-align: center;
+  font-size: $size;
+  font-weight: $weight;
+  color: $color;
+  font-family: $family;
+  font-style: $style;
+}
+
+.best-price-container {
+  @include flexCenter(column, right, left);
+  flex: 1;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position: center;
+  padding: 100px 0;
+  height: fit-content !important;
+
+
+  .text-container {
+    padding-left: 200px;
+    text-align: left !important;
+
+    .details {
+      @include textCenter(15px, 400, grey, ("Poppins", Arial, sans-serif), _);
+      line-height: 1.8;
+    }
+
+  }
+
+  .product-container {
+   @extend .text-container;
+   border: unset;
+
+   .prev-price {
+      font-weight: 500;
+      font-size: 18px;
+      color: rgba(0, 0, 0, 0.5);
+   }
+
+   .present-price {
+      @extend .present-price ;
+      transition: .3s all ease;
+      color: $mainGreen;
+      padding-left: 3px;
+   }
+  }
+}
+
+.counter {
+   @include textCenter(40px,500 ,black ,_ ,_ );
+}

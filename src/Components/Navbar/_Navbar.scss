@@ -1,0 +1,30 @@
+$mainGreen: #82ae46;
+
+.nav-main {
+  background-color: #fff;
+  position: sticky !important;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+.logo {
+  font-size: large;
+  font-weight: bold;
+  color: $mainGreen !important;
+}
+
+.nav-ul {
+  margin-left: 55%;
+}
+
+.nav-item {
+  color: rgba(0, 0, 0, 0.923) !important;
+  .link {
+    &:hover {
+      color: $mainGreen;
+    }
+    &:active {
+      color: $mainGreen;
+    }
+  }
+}

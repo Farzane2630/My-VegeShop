@@ -1,0 +1,14 @@
+$mainGreen : #82ae46;
+
+@mixin textCenter ($size, $weight, $color, $family, $style){
+   text-align: center;
+   font-size: $size;
+   font-weight: $weight;
+   color: $color;
+   font-family: $family;
+   font-style: $style;
+}
+
+.products-grid-container {
+   padding: 6rem;
+}

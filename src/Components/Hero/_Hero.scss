@@ -1,0 +1,82 @@
+$mainGreen: #82ae46;
+
+@mixin flexCenter($direction, $justify) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: center;
+}
+
+@mixin textStyle($weight, $letter, $size, $family, $transform) {
+  text-transform: $transform;
+  font-size: $size;
+  letter-spacing: $letter;
+  font-weight: $weight;
+  font-family: $family;
+  color: #fff;
+}
+
+.swiper {
+  max-width: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  padding-top: 55px;
+
+  /* Center slide text vertically */
+  @include flexCenter(row, center);
+  row-gap: 20px;
+}
+
+.not-index {
+  height: 400px !important;
+}
+
+.slide-container {
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: bottom !important;
+  width: 100vw !important;
+  height: 800px;
+  box-sizing: border-box;
+
+  .slide-1,
+  .slide-2 {
+    @include flexCenter(column, center);
+  }
+
+  .index-title {
+    @include textStyle(100, _, 5vw, ("Amatic SC", cursive), _);
+    line-height: 1.3;
+  }
+
+  .index-sub-title {
+    @include textStyle(70, _, 2vw, _, uppercase);
+  }
+}
+
+Button {
+  border-radius: 20px !important;
+  background-color: $mainGreen !important;
+  font-weight: bold !important;
+
+  &:hover {
+    background-color: unset !important;
+    color: $mainGreen !important;
+    border: $mainGreen thin solid !important;
+  }
+}
+
+.product-title {
+  @include textStyle(800, 3px, 30px, ("Poppins", Arial, sans-serif), uppercase);
+}
+
+.product-page {
+  @include textStyle(300, 3px, 12px, _, uppercase);
+
+  margin-bottom: 0;
+  z-index: 99;
+}

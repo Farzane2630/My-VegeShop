@@ -1,0 +1,234 @@
+{
+  "products": [
+    {
+      "id": 58,
+      "title": "BROCOLLI",
+      "price": 7,
+      "rate": 3,
+      "sold": 900,
+      "cover": "./assets/images/brocollie.jpg",
+      "inStock": 1,
+      "category": "Vegetables",
+      "discount": 5
+    },
+    {
+      "id": 39,
+      "title": "Fruits JUICE",
+      "price": 15,
+      "rate": 4,
+      "sold": 1600,
+      "cover": "./assets/images/fruit-juice.jpg",
+      "inStock": 1,
+      "category": "Juice",
+      "discount": 3
+    },
+    {
+      "id": 123,
+      "title": "ALMOND",
+      "price": 19,
+      "rate": 4.4,
+      "sold": 900,
+      "cover": "./assets/images/almond.jpg",
+      "inStock": 1,
+      "category": "Dreid",
+      "discount": 5
+    },
+    {
+      "id": 34,
+      "title": "SUNFLOWER SEEDS",
+      "price": 14,
+      "rate": 4.4,
+      "sold": 800,
+      "cover": "./assets/images/sunflower-seeds.jpg",
+      "inStock": 1,
+      "category": "Dried",
+      "discount": 3
+    },
+    {
+      "id": 35,
+      "title": "ORANGE JUICE",
+      "price": 9,
+      "rate": 4.4,
+      "sold": 900,
+      "cover": "./assets/images/orange-juice.jpg",
+      "inStock": 1,
+      "category": "Juice",
+      "discount": "3"
+    },
+    {
+      "id": 8,
+      "title": "BROCOLLI",
+      "price": 7,
+      "rate": 3,
+      "sold": 900,
+      "cover": "./assets/images/brocollie.jpg",
+      "inStock": 1,
+      "category": "Vegetables",
+      "discount": 5
+    },
+    {
+      "id": 9,
+      "title": "Fruits JUICE",
+      "price": 15,
+      "rate": 4,
+      "sold": 1600,
+      "cover": "./assets/images/fruit-juice.jpg",
+      "inStock": 1,
+      "category": "Juice",
+      "discount": 3
+    },
+    {
+      "id": 13,
+      "title": "ALMOND",
+      "price": 19,
+      "rate": 4.4,
+      "sold": 900,
+      "cover": "./assets/images/almond.jpg",
+      "inStock": 1,
+      "category": "Dreid",
+      "discount": 5
+    },
+    {
+      "id": 14,
+      "title": "SUNFLOWER SEEDS",
+      "price": 14,
+      "rate": 4.4,
+      "sold": 800,
+      "cover": "./assets/images/sunflower-seeds.jpg",
+      "inStock": 1,
+      "category": "Dried",
+      "discount": 3
+    },
+    {
+      "id": 15,
+      "title": "ORANGE JUICE",
+      "price": 9,
+      "rate": 4.4,
+      "sold": 900,
+      "cover": "./assets/images/orange-juice.jpg",
+      "inStock": 1,
+      "category": "Juice",
+      "discount": 10
+    }
+  ],
+  "categories": [
+    {
+      "id": 5,
+      "title": "All",
+      "cover": "./assets/images/category-4.jpg"
+    },
+    {
+      "id": 1,
+      "title": "Vegetables",
+      "cover": "./assets/images/category-1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Fruits",
+      "cover": "./assets/images/category-2.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Juice",
+      "cover": "./assets/images/category-3.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Dried",
+      "cover": "./assets/images/category-4.jpg"
+    }
+  ],
+  "heroImages": [
+    "./assets/images/bg_1.jpg",
+    "./assets/images/p_bg_1.jpg",
+    "./assets/images/bg_2.jpg"
+  ],
+  "best-price": {
+    "id": 1,
+    "productTitle": "Spinach",
+    "price": "10",
+    "totalPrice": 0,
+    "discount": "5",
+    "bgUrl": "./assets/images/bg_3.jpg"
+  },
+  "usersInfo": [
+    {
+      "userID": 1,
+      "userName": "Farzane",
+      "userImgUrl": "./assets/images/person.jpg",
+      "userCommentText": "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts."
+    },
+    {
+      "userID": 2,
+      "userName": "Hossein",
+      "userImgUrl": "./assets/images/person.jpg",
+      "userCommentText": "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts."
+    },
+    {
+      "userID": 3,
+      "userName": "Sahel",
+      "userImgUrl": "./assets/images/person.jpg",
+      "userCommentText": "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts."
+    },
+    {
+      "userID": 4,
+      "userName": "Stephie",
+      "userImgUrl": "./assets/images/person.jpg",
+      "userCommentText": "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts."
+    }
+  ],
+  "services": [
+    {
+      "url": "./assets/images/free-delivery.png",
+      "title": "Free Shipping",
+      "detail": "on order over $100",
+      "bg": "#e4b2d6"
+    },
+    {
+      "url": "./assets/images/grocery-cart.png",
+      "title": "Always Fresh",
+      "detail": "products well packaged",
+      "bg": "#dcc698"
+    },
+    {
+      "url": "./assets/images/premium-quality.png",
+      "title": "Superior Quality",
+      "detail": "quality products",
+      "bg": "#a2d1e1"
+    },
+    {
+      "url": "./assets/images/customer-service.png",
+      "title": "Support",
+      "detail": "24/7 support",
+      "bg": "#dcd691"
+    }
+  ],
+  "countup": [
+    {
+      "end": 1056,
+      "desc": "HAPPY CUSTOMERS"
+    },
+    {
+      "end": 93,
+      "desc": "BRANCHES"
+    },
+    {
+      "end": 60,
+      "desc": "PARTNER"
+    },
+    {
+      "end": 20,
+      "desc": "AWARDS"
+    }
+  ],
+  "about": {
+    "url": "./assets/images/about.jpg"
+  },
+  "contact-info": {
+    "address": "198 West 21th Street, Suite 721 New York NY 10016",
+    "email": "farzanekazemi8517@gmail.com",
+    "phone": "+989120738517",
+    "website": "www.vegeeshop.com"
+  },
+  "cartItems": []
+}

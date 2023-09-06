@@ -1,0 +1,16 @@
+@mixin textCenter($size, $weight, $color, $family, $style) {
+  text-align: center;
+  font-size: $size;
+  font-weight: $weight;
+  color: $color;
+  font-family: $family;
+  font-style: $style;
+}
+$mainGreen: #82ae46;
+.testimony-slide {
+  padding: 0 4.5rem 5% 4.5rem;
+
+  .swiper-pagination-bullet-active {
+    background-color: $mainGreen;
+  }
+}

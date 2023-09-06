@@ -1,0 +1,102 @@
+@mixin textDecoration($size, $weight, $color, $family, $style, $align) {
+  text-align: $align;
+  font-size: $size;
+  font-weight: $weight;
+  color: $color;
+  font-family: $family;
+  font-style: $style;
+}
+
+.checkout-container {
+  max-width: 1140px;
+  margin: 3rem auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .billing-header {
+    text-align: left;
+    padding-left: 14px;
+  }
+
+  .info-table {
+    padding: 2rem 1rem;
+  }
+
+  .payment {
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 2rem;
+    .cart-total {
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .head {
+        @include textDecoration(
+          _,
+          400,
+          #000000,
+          ("Poppins", Arial, sans-serif),
+          _,
+          left
+        );
+        line-height: 1.5;
+      }
+      .sub-total,
+      .delivery,
+      .discount,
+      .total {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        @include textDecoration(
+          15px,
+          400,
+          gray,
+          ("Poppins", Arial, sans-serif),
+          _,
+          left
+        );
+        background: #fff;
+        line-height: 1.8;
+        span {
+          text-align: left;
+        }
+      }
+      .total-price {
+        color: #000000;
+        font-weight: 600;
+      }
+    }
+
+    .payment-method {
+      @extend .cart-total;
+      .form-control-label {
+        @extend .head;
+      }
+      .radio-btns,
+      .checkbox-btn {
+        @include textDecoration(
+          15px,
+          400,
+          gray,
+          ("Poppins", Arial, sans-serif),
+          _,
+          left
+        );
+      }
+      .order-btn {
+        padding: 1rem 1.5rem;
+        width: 100%;
+        margin: 2rem 1rem;
+        border-radius: 45px !important;
+        text-transform: capitalize;
+      }
+    }
+  }
+}

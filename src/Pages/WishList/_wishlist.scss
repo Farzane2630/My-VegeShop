@@ -1,0 +1,20 @@
+.total-price {
+  display: flex !important;
+  flex-direction: row;
+  justify-content: flex-end !important;
+  padding: 0 6rem !important;
+}
+.count-input {
+  height: 54px !important;
+  text-align: center !important;
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+  color: #000000 !important;
+  padding: 0;
+  font-size: 14px;
+}
+
+.whishItem-img {
+  width: 10%;
+  height: 10%;
+  object-fit: contain;
+}

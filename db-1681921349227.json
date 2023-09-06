@@ -1,0 +1,191 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "title": "TOMATOE",
+      "price": 70,
+      "rate": 4.4,
+      "sold": 900,
+      "cover": "./assets/images/tomatoe.jpg",
+      "inStock": 1,
+      "category": "vegetable",
+      "discount": 0
+    },
+    {
+      "id": 2,
+      "title": "CARROT",
+      "price": 110,
+      "rate": 3.4,
+      "sold": 260,
+      "cover": "./assets/images/carrot.jpg",
+      "inStock": 1,
+      "category": "vegetable",
+      "discount": 0
+    },
+    {
+      "id": 3,
+      "title": "GARLIC",
+      "price": 100,
+      "rate": 4.1,
+      "sold": 600,
+      "cover": "./assets/images/garlic.jpg",
+      "inStock": 1,
+      "category": "vegetable",
+      "discount": 10
+    },
+    {
+      "id": 4,
+      "title": "BELL PEPPER",
+      "price": 127,
+      "rate": 2.4,
+      "sold": 90,
+      "cover": "./assets/images/bell-peper.jpg",
+      "inStock": 1,
+      "category": "vegetable",
+      "discount": 0
+    },
+    {
+      "id": 5,
+      "title": "STRAWBERRY",
+      "price": 120,
+      "rate": 4.4,
+      "sold": 900,
+      "cover": "./assets/images/strawbery.jpg",
+      "inStock": 1,
+      "category": "fruit",
+      "discount": 0
+    },
+    {
+      "id": 6,
+      "title": "GREEN BEANS",
+      "price": 70,
+      "rate": 3.4,
+      "sold": 600,
+      "cover": "./assets/images/green-beans.jpg",
+      "inStock": 1,
+      "category": "vegetable",
+      "discount": 30
+    },
+    {
+      "id": 7,
+      "title": "PURPLE CABBAGE",
+      "price": 95,
+      "rate": 4.4,
+      "sold": 50,
+      "cover": "./assets/images/purple-cabage.jpg",
+      "inStock": 1,
+      "category": "vegetable",
+      "discount": 0
+    },
+    {
+      "id": 8,
+      "title": "BROCOLLI",
+      "price": 73,
+      "rate": 3,
+      "sold": 900,
+      "cover": "./assets/images/brocollie.jpg",
+      "inStock": 1,
+      "category": "vegetable",
+      "discount": 50
+    },
+    {
+      "id": 9,
+      "title": "FRUIT JUICE",
+      "price": 150,
+      "rate": 4,
+      "sold": 1600,
+      "cover": "./assets/images/fruit-juice.jpg",
+      "inStock": 1,
+      "category": "juice",
+      "discount": 30
+    },
+    {
+      "id": 10,
+      "title": "APPLE",
+      "price": 97,
+      "rate": 4.4,
+      "sold": 800,
+      "cover": "./assets/images/apple.jpg",
+      "inStock": 1,
+      "category": "fruit",
+      "discount": 0
+    },
+    {
+      "id": 11,
+      "title": "ONION",
+      "price": 84,
+      "rate": 4.4,
+      "sold": 800,
+      "cover": "./assets/images/onion.jpg",
+      "inStock": 1,
+      "category": "vegetable",
+      "discount": 0
+    },
+    {
+      "id": 12,
+      "title": "CHILLI",
+      "price": 98,
+      "rate": 3.4,
+      "sold": 170,
+      "cover": "./assets/images/chili.jpg",
+      "inStock": 1,
+      "category": "vegetable",
+      "discount": 0
+    },
+    {
+      "id": 13,
+      "title": "ALMOND",
+      "price": 190,
+      "rate": 4.4,
+      "sold": 900,
+      "cover": "./assets/images/almond.jpg",
+      "inStock": 1,
+      "category": "dreid",
+      "discount": 5
+    },
+    {
+      "id": 14,
+      "title": "SUNFLOWER SEEDS",
+      "price": 147,
+      "rate": 4.4,
+      "sold": 800,
+      "cover": "./assets/images/sunflower-seeds.jpg",
+      "inStock": 1,
+      "category": "dried",
+      "discount": 30
+    },
+    {
+      "id": 1,
+      "title": "ORANGE JUICE",
+      "price": 99,
+      "rate": 4.4,
+      "sold": 900,
+      "cover": "./assets/images/orange-juice.jpg",
+      "inStock": 1,
+      "category": "juice",
+      "discount": 10
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "title": "vegetable",
+      "cover": "./assets/images/category-1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "fruit",
+      "cover": "./assets/images/category-2.jpg"
+    },
+    {
+      "id": 3,
+      "title": "juice",
+      "cover": "./assets/images/category-3.jpg"
+    },
+    {
+      "id": 4,
+      "title": "dried",
+      "cover": "./assets/images/category-4.jpg"
+    }
+  ]
+}
