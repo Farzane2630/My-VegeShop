@@ -6,17 +6,14 @@ import { productType } from "../../Types/types";
 function CustomPagination(props: { items: productType[], itemsCount: number, pathname?: string, onPageChange: Function }) {
   const pageCount = Math.ceil(props.items.length / props.itemsCount);
 
-  const handlePageChange = (value: number) => {
-    props.onPageChange(value);
+  const handlePageChange = (event: React.ChangeEvent<unknown>, page: number) => {
+    props.onPageChange(page);
   };
 
   return (
     <div className="pagination-wrapper paigination-parent">
       <Pagination count={pageCount}
-        onChange={event => {
-          event.preventDefault()
-          handlePageChange
-        }}
+        onChange={handlePageChange}
         className="pagination" />
     </div>
   );

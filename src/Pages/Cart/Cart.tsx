@@ -6,48 +6,39 @@ import Hero from "../../components/Hero/Hero";
 import { SwiperSlide } from "swiper/react";
 import { useDispatch, useSelector } from "react-redux";
 import BasicTable from "../../Utils/Table/Table";
-// import { removeFromCart } from "../../Redux/Reducers/cartItems";
+import { removeFromCart } from "../../Redux/Reducers/cartItems";
 import TextField from "@mui/material/TextField";
 import ShowAlert from "../../Utils/Alert/Alert";
 import { Button, Grid } from "@mui/material";
-import { Link } from "react-router-dom";
-import { stateType } from "../../Types/types";
-// import { useEffect } from "react";
+import { Link, json } from "react-router-dom";
+import { productType, stateType } from "../../Types/types";
+import { useContext, useEffect, useState } from "react";
+import { cartContext } from "../../Contexts/Contexts";
 
 export default function Cart() {
   const dispatch = useDispatch();
 
-  const bg = useSelector((state:stateType ) => state.bgUrl);
-  const cartItems = useSelector((state:stateType ) => state.cart.cartItems);
-  // const cartTotalAmount = useSelector((state:stateType ) => state.cart.cartTotalAmount);
+  const bg = useSelector((state: stateType) => state.bgUrl);
+  const cart = useContext(cartContext)
+  const [cartItems, setCartItems] = useState<productType[]>([])
 
-  const deleteFromList = (productID:string) => {
-    // @ts-ignore
-    dispatch(removeFromCart(productID));
+
+  const totalPrice = useSelector((state: stateType) => state.cart.cartTotalAmount);
+
+
+  useEffect(() => {
+
+    // const cartItems = localStorage.setItem("cart item", JSON.stringify(cart.cartItems))
+    setCartItems(cartItems)
+
+    // console.log(cartItems);
+  }, [cart.cartItems])
+
+  const deleteFromList = (productID: string) => {
+    const reminedItems = cartItems.filter(product => product.id !== productID)
+
+    setCartItems(reminedItems)
   }
-
-
-//   const handleRemoveFromCart = (product: {
-//     id: string,
-//     title: string,
-//     price: number,
-//     rate: number,
-//     sold: number,
-//     cover: string,
-//     inStock: number,
-//     category: string,
-//     discount: number
-//  }) => {
-//   // @ts-ignore
-//     dispatch(removeFromCart(product));
-
-//   };
-
-  //cart total price
-
-  // useEffect(() => {
-  //   dispatch(getTotals ());
-  // }, [cartItems, dispatch]);
 
   return (
     <>
@@ -61,9 +52,9 @@ export default function Cart() {
           <h1 className="product-title">MY CART</h1>
         </SwiperSlide>
       </Hero>
-      {cartItems.length > 0 ? (
+      {cartItems && cartItems.length > 0 ? (
         <>
-          <BasicTable products={cartItems} deleteFromList={deleteFromList} wishlist={undefined} addToCartHandler={undefined} />
+          <BasicTable products={cartItems} deleteFromList={deleteFromList} />
           <Grid
             item
             xs={12}
@@ -78,7 +69,7 @@ export default function Cart() {
           >
             <TextField
               id="outlined-basic"
-              // label={`$${totalPrice}`}
+              label={`$${totalPrice}`}
               variant="outlined"
               disabled={true}
             />
@@ -95,10 +86,10 @@ export default function Cart() {
         </>
       ) : (
         <ShowAlert
-            variant="filled"
-            type="error"
-            msg="Cart is Empty!"
-            cart={true} wishlist={undefined}        />
+          variant="filled"
+          type="error"
+          msg="Cart is Empty!"
+          cart={true} wishlist={undefined} />
       )}
 
       <Footer about={false} />

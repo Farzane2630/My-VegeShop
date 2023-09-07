@@ -6,7 +6,7 @@
       "price": 70,
       "rate": 4.4,
       "sold": 900,
-      "cover": "./assets/images/tomatoe.jpg",
+      "cover": "./src/assets/images/tomatoe.jpg",
       "inStock": 1,
       "category": "vegetable",
       "discount": 0
@@ -17,7 +17,7 @@
       "price": 110,
       "rate": 3.4,
       "sold": 260,
-      "cover": "./assets/images/carrot.jpg",
+      "cover": "./src/assets/images/carrot.jpg",
       "inStock": 1,
       "category": "vegetable",
       "discount": 0
@@ -28,7 +28,7 @@
       "price": 100,
       "rate": 4.1,
       "sold": 600,
-      "cover": "./assets/images/garlic.jpg",
+      "cover": "./src/assets/images/garlic.jpg",
       "inStock": 1,
       "category": "vegetable",
       "discount": 10
@@ -39,7 +39,7 @@
       "price": 127,
       "rate": 2.4,
       "sold": 90,
-      "cover": "./assets/images/bell-peper.jpg",
+      "cover": "./src/assets/images/bell-peper.jpg",
       "inStock": 1,
       "category": "vegetable",
       "discount": 0
@@ -50,7 +50,7 @@
       "price": 120,
       "rate": 4.4,
       "sold": 900,
-      "cover": "./assets/images/strawbery.jpg",
+      "cover": "./src/assets/images/strawbery.jpg",
       "inStock": 1,
       "category": "fruit",
       "discount": 0
@@ -61,7 +61,7 @@
       "price": 70,
       "rate": 3.4,
       "sold": 600,
-      "cover": "./assets/images/green-beans.jpg",
+      "cover": "./src/assets/images/green-beans.jpg",
       "inStock": 1,
       "category": "vegetable",
       "discount": 30
@@ -72,7 +72,7 @@
       "price": 95,
       "rate": 4.4,
       "sold": 50,
-      "cover": "./assets/images/purple-cabage.jpg",
+      "cover": "./src/assets/images/purple-cabage.jpg",
       "inStock": 1,
       "category": "vegetable",
       "discount": 0
@@ -83,7 +83,7 @@
       "price": 73,
       "rate": 3,
       "sold": 900,
-      "cover": "./assets/images/brocollie.jpg",
+      "cover": "./src/assets/images/brocollie.jpg",
       "inStock": 1,
       "category": "vegetable",
       "discount": 50
@@ -94,7 +94,7 @@
       "price": 150,
       "rate": 4,
       "sold": 1600,
-      "cover": "./assets/images/fruit-juice.jpg",
+      "cover": "./src/assets/images/fruit-juice.jpg",
       "inStock": 1,
       "category": "juice",
       "discount": 30
@@ -105,7 +105,7 @@
       "price": 97,
       "rate": 4.4,
       "sold": 800,
-      "cover": "./assets/images/apple.jpg",
+      "cover": "./src/assets/images/apple.jpg",
       "inStock": 1,
       "category": "fruit",
       "discount": 0
@@ -116,7 +116,7 @@
       "price": 84,
       "rate": 4.4,
       "sold": 800,
-      "cover": "./assets/images/onion.jpg",
+      "cover": "./src/assets/images/onion.jpg",
       "inStock": 1,
       "category": "vegetable",
       "discount": 0
@@ -127,7 +127,7 @@
       "price": 98,
       "rate": 3.4,
       "sold": 170,
-      "cover": "./assets/images/chili.jpg",
+      "cover": "./src/assets/images/chili.jpg",
       "inStock": 1,
       "category": "vegetable",
       "discount": 0
@@ -138,7 +138,7 @@
       "price": 190,
       "rate": 4.4,
       "sold": 900,
-      "cover": "./assets/images/almond.jpg",
+      "cover": "./src/assets/images/almond.jpg",
       "inStock": 1,
       "category": "dreid",
       "discount": 5
@@ -149,7 +149,7 @@
       "price": 147,
       "rate": 4.4,
       "sold": 800,
-      "cover": "./assets/images/sunflower-seeds.jpg",
+      "cover": "./src/assets/images/sunflower-seeds.jpg",
       "inStock": 1,
       "category": "dried",
       "discount": 30
@@ -160,7 +160,7 @@
       "price": 99,
       "rate": 4.4,
       "sold": 900,
-      "cover": "./assets/images/orange-juice.jpg",
+      "cover": "./src/assets/images/orange-juice.jpg",
       "inStock": 1,
       "category": "juice",
       "discount": 10
@@ -170,22 +170,22 @@
     {
       "id": 1,
       "title": "vegetable",
-      "cover": "./assets/images/category-1.jpg"
+      "cover": "./src/assets/images/category-1.jpg"
     },
     {
       "id": 2,
       "title": "fruit",
-      "cover": "./assets/images/category-2.jpg"
+      "cover": "./src/assets/images/category-2.jpg"
     },
     {
       "id": 3,
       "title": "juice",
-      "cover": "./assets/images/category-3.jpg"
+      "cover": "./src/assets/images/category-3.jpg"
     },
     {
       "id": 4,
       "title": "dried",
-      "cover": "./assets/images/category-4.jpg"
+      "cover": "./src/assets/images/category-4.jpg"
     }
   ]
 }

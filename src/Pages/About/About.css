@@ -1,0 +1,103 @@
+.best-price-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+  align-items: center;
+  text-align: left;
+  flex: 1;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position: center;
+  margin: 50px 0 100px 0;
+  padding: 100px 0;
+  height: 320px;
+  opacity: 0.6;
+}
+
+.about-container {
+  padding: 0 6rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: right;
+}
+
+.about-media {
+  display: flex;
+  justify-content: right;
+}
+.about-media .about-img {
+  width: 500px;
+  max-width: 500px;
+  height: 500px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  padding: 0 1.5rem;
+  position: relative !important;
+}
+.about-media .play-icon-bg {
+  color: #fff !important;
+  z-index: 200;
+  background-color: #82ae46;
+  border: none;
+  border-radius: 50%;
+  padding: 1rem;
+  position: absolute;
+  right: 50%;
+  bottom: 50%;
+  animation: pulse 2s infinite;
+  -webkit--webkit-border-radius: 50%;
+  -moz--webkit-border-radius: 50%;
+  -ms--webkit-border-radius: 50%;
+  -webkit--moz-border-radius: 50%;
+  -moz--moz-border-radius: 50%;
+  -ms--moz-border-radius: 50%;
+  -webkit--ms-border-radius: 50%;
+  -moz--ms-border-radius: 50%;
+  -ms--ms-border-radius: 50%;
+}
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(130, 174, 70, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 30px rgba(130, 174, 70, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(130, 174, 70, 0);
+  }
+}
+.about-media:hover {
+  cursor: pointer;
+}
+.about-media .play-icon {
+  font-size: 40px;
+}
+
+.about-description {
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column !important;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  align-items: flex-start;
+}
+.about-description .about-header {
+  text-align: left;
+  font-size: 40px;
+  font-weight: 600;
+  color: #000000;
+  margin: 0 0 16px 0;
+}
+.about-description .about-details {
+  margin: 0 0 16px 0;
+  font-family: "Poppins", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.8;
+  font-weight: 400;
+  color: gray;
+}/*# sourceMappingURL=About.css.map */

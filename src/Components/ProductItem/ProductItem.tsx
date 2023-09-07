@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { MouseEventHandler, useState } from "react";
 import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -12,8 +12,8 @@ interface propTypes {
   img: string;
   name: string;
   price: number;
-  addToWishlist: Function;
-  addToCart: Function
+  addToWishlist: MouseEventHandler<HTMLAnchorElement>;
+  addToCart: MouseEventHandler<HTMLAnchorElement>
 }
 
 export default function ProductItem(props: propTypes) {
@@ -61,19 +61,11 @@ export default function ProductItem(props: propTypes) {
             <Link to={props.path}>
               <MenuIcon className="icon" />
             </Link>
-            <Link to="">
-              <FavoriteIcon className="icon"
-                onClick={event => {
-                  event.preventDefault()
-                  props.addToWishlist
-                }} />
+            <Link to="" onClick={props.addToWishlist} >
+              <FavoriteIcon className="icon" />
             </Link>
-            <Link to="">
-              <ShoppingCartIcon className="icon"
-                onClick={event => {
-                  event.preventDefault()
-                  props.addToCart
-                }} />
+            <Link to="" onClick={props.addToCart}>
+              <ShoppingCartIcon className="icon" />
             </Link>
           </div>
         </div>

@@ -1,0 +1,90 @@
+.topbar-contact-container {
+  background-color: #82ae46;
+  color: #ffffff;
+}
+.topbar-contact-container .topbar-contact-info {
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.topbar-contact-container .topbar-contact-info:hover {
+  cursor: pointer;
+}
+
+.nav-main {
+  background-color: #fff;
+  position: sticky !important;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: large;
+  font-weight: bold;
+  color: #82ae46 !important;
+}
+
+.nav-ul {
+  margin-left: 55%;
+}
+
+.nav-item {
+  color: rgba(0, 0, 0, 0.923) !important;
+}
+.nav-item .link:hover {
+  color: #82ae46;
+}
+.nav-item .link:active {
+  color: #82ae46;
+}
+
+.link {
+  color: inherit;
+  text-decoration: none;
+}
+.link:hover {
+  color: inherit;
+}
+
+.landing-section-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: _;
+  color: #82ae46;
+  font-family: "Lora", Georgia, serif;
+  font-style: italic;
+  display: block;
+  margin: 30px 0 10px 0;
+}
+
+.landing-section-subtitle {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 600;
+  color: black;
+  font-family: "Poppins", Arial, sans-serif;
+  font-style: _;
+}
+
+.landing-section-details {
+  text-align: center;
+  font-size: 15px;
+  font-weight: 400;
+  color: grey;
+  font-family: "Poppins", Arial, sans-serif;
+  font-style: _;
+  line-height: 1.8;
+}
+
+.text {
+  font-size: 14px;
+  margin-bottom: 5px;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: "Poppins", Arial, sans-serif;
+}/*# sourceMappingURL=Style.css.map */

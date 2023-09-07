@@ -4,6 +4,7 @@ import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 
 export default function BasicRating(props: { type: string, rate: number }) {
+  // @ts-ignore
   const [value, setValue] = React.useState<number>(0);
 
   return (

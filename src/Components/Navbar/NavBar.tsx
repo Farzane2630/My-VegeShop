@@ -11,7 +11,7 @@ import { stateType } from "../../Types/types";
 
 export default function NavBar() {
 
-  const selectedProducts = useSelector((state: stateType) => state.cart)
+  const selectedProducts = useSelector((state: stateType) => state.cart.cartItems)
 
   return (
     <Navbar expand="lg" className="nav-main">
@@ -68,7 +68,7 @@ export default function NavBar() {
             <Nav.Link href="/cart" className="nav-item cart-elem">
               <Link to="/cart" className="link">
                 <ShoppingCartIcon />
-                <span className="orders-count">[{selectedProducts.length}]</span>
+                <span className="orders-count">[{selectedProducts ? selectedProducts.length : 0}]</span>
               </Link>
             </Nav.Link>
           </Nav>

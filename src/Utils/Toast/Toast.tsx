@@ -1,5 +1,5 @@
 
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 
 export default function Toast() {
   return (

@@ -4,7 +4,7 @@ import "./_Category.scss";
 import { Box, Button, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import shop from "../../../public/assets/images/category.jpg";
+import shop from "../../assets/images/category.jpg";
 import { stateType } from "../../Types/types";
 
 export default function Category() {
@@ -18,7 +18,7 @@ export default function Category() {
         direction="row"
         justifyContent="center"
       >
-        <Grid xs={12} md={3} className="grid-item">
+        <Grid item xs={12} md={3} className="grid-item">
           {categories.slice(0, 2).map((category) => (
             <div className="image-container">
               <div
@@ -30,7 +30,7 @@ export default function Category() {
             </div>
           ))}
         </Grid>
-        <Grid xs={12} md={3} className="grid-item">
+        <Grid item xs={12} md={3} className="grid-item">
           <div className="shop-part image-container">
             <p className="landing-section-title">Vegetables</p>
             <p className="landing-section-details">

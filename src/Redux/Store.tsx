@@ -42,19 +42,19 @@ const store = configureStore({
 });
 
 
-// store.dispatch(fetchProducts());
-// store.dispatch(fetchCategories());
-// store.dispatch(fetchCategory());
-// store.dispatch(fetchBackgroundUrl());
-// store.dispatch(fetchUsersInfo());
-// store.dispatch(fetchServicesData());
-// store.dispatch(fetchCountUpData());
-// store.dispatch(fetchAboutData());
-// store.dispatch(fetchProductData());
-// store.dispatch(fetchContactInfo());
+store.dispatch(fetchProducts());
+store.dispatch(fetchCategories());
+store.dispatch(fetchCategory());
+store.dispatch(fetchBackgroundUrl());
+store.dispatch(fetchUsersInfo());
+store.dispatch(fetchServicesData());
+store.dispatch(fetchCountUpData());
+store.dispatch(fetchAboutData());
+store.dispatch(fetchProductData());
+store.dispatch(fetchContactInfo());
 // store.dispatch(addToCart());
-// store.dispatch(fetchCartItems());
-// store.dispatch(updateTotalPrice());
-// store.dispatch(removeFromCart());
+store.dispatch(fetchCartItems());
+store.dispatch(updateTotalPrice());
+store.dispatch(removeFromCart());
 
 export default store;

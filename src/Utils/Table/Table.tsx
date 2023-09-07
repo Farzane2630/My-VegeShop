@@ -1,5 +1,5 @@
-import * as React from "react";
-import { useState } from "react";
+import "./_Table.scss";
+
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -10,43 +10,18 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
 import MouseOverPopover from "../Poper";
 import { Link } from "react-router-dom";
-import "./_Table.scss";
-import { updateTotalPrice } from "../../Redux/Reducers/cartItems";
-import { useDispatch, useSelector } from "react-redux";
+import { productType } from "../../Types/types";
 
-function ProductRow({ product, deleteFromList, wishlist, addToCartHandler }) {
-  const [quantity, setQuantity] = useState(1);
-  const carttItems = useSelector((state) => state.cart);
-  const setproductQuantity = (productID, e) => {
-    setQuantity(e.target.value);
-
-    carttItems.length > 0 &&
-      carttItems.find((product) => {
-        if (product.id === productID) {
-          setNewObject(e.target.value, productID);
-        }
-      });
-  };
-  const dispatch = useDispatch();
-
-  function setNewObject(quantity, productID) {
-    const updatetProductObject = {
-      id: product.id,
-      title: product.title,
-      price: product.price,
-      quantity: quantity,
-      rate: product.rate,
-      sold: product.sold,
-      cover: product.cover,
-      inStock: product.inStock,
-      category: product.category,
-      discount: product.discount,
-    };
-    dispatch(updateTotalPrice(productID, updatetProductObject));
-  }
+function ProductRow(props: {
+  product: productType,
+  deleteFromList: Function,
+  wishlist: productType[],
+  addToCartHandler: Function,
+  // handleDecreaseCart: Function
+}) {
   return (
     <TableRow
-      key={product.name}
+      key={props.product.title}
       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
     >
       <TableCell
@@ -61,58 +36,65 @@ function ProductRow({ product, deleteFromList, wishlist, addToCartHandler }) {
         }}
       >
         <IconButton
-          onClick={deleteFromList}
+          onClick={props.deleteFromList}
           aria-label="delete"
           size="large"
+          // @ts-ignore
           color="black"
           className="delete-btn"
         >
           <DeleteIcon fontSize="inherit" />
         </IconButton>
-        <div className="add-to-cart-btn" onClick={addToCartHandler}>
-          {wishlist ? (
-            <MouseOverPopover path="" PopOverTxt="ADD to CART!" />
+        <div className="add-to-cart-btn" onClick={
+          event => {
+            event.preventDefault()
+            props.addToCartHandler
+          }
+        }>
+          {props.wishlist ? (
+            <MouseOverPopover path="" PopOverTxt="ADD to CART!" target={undefined} />
           ) : (
             ""
           )}
         </div>
-        <Link to={`/product-info/${product.id}`} className="link">
-          <img src={product.cover} className="whishItem-img" />
+        <Link to={`/product-info/${props.product.id}`} className="link">
+          <img src={props.product.cover} className="whishItem-img" />
         </Link>
-        {product.title}
+        {props.product.title}
       </TableCell>
       <TableCell className="table-body-cell" align="center">
         ${" "}
-        {product.discount
-          ? ((product.price * (100 - product.discount)) / 100).toFixed(3)
-          : product.price}
+        {props.product.discount
+          ? ((props.product.price * (100 - props.product.discount)) / 100).toFixed(3)
+          : props.product.price}
       </TableCell>
       <TableCell className="table-body-cell" align="center">
         <input
           className="count-input"
-          value={quantity}
-          onChange={(e) => setproductQuantity(product.id, e)}
+        // value={}
+        // onChange={(e) => setproductQuantity(props.product.id, e)}
         />
       </TableCell>
       <TableCell className="table-body-cell" align="center">
-        {product.discount !== 0 && product.quantity > 1
-          ? ((product.price * (100 - product.discount)) / 100) *
-            product.quantity
-          : product.discount !== 0 && product.quantity <= 1
-          ? product.price * ((100 - product.discount) / 100)
-          : product.discount === 0 && product.quantity > 1
-          ? product.price * product.quantity
-          : ""}
+        {props.product.discount !== 0 && props.product.quantity && props.product.quantity > 1
+          ? ((props.product.price * (100 - props.product.discount)) / 100) *
+          props.product.quantity
+          : props.product.discount !== 0 && props.product.quantity && props.product.quantity <= 1
+            ? props.product.price * ((100 - props.product.discount) / 100)
+            : props.product.discount === 0 && props.product.quantity && props.product.quantity > 1
+              ? props.product.price * props.product.quantity
+              : ""}
       </TableCell>
     </TableRow>
   );
 }
 
-export default function BasicTable({
-  products,
-  deleteFromList,
-  wishlist,
-  addToCartHandler,
+export default function BasicTable(props: {
+  products: productType[],
+  deleteFromList: Function,
+  wishlist?: productType[],
+  addToCartHandler?: Function,
+  // handleDecreaseCart: Function
 }) {
   return (
     <TableContainer className="table-container">
@@ -134,14 +116,15 @@ export default function BasicTable({
           </TableRow>
         </TableHead>
         <TableBody>
-          {products.map((product) => (
+          {props.products.map((product: productType) => (
             <ProductRow
               key={product.title}
               product={product}
-              deleteFromList={() => deleteFromList(product.id)}
-              wishlist={wishlist}
-              addToCartHandler={() => addToCartHandler(product.id)}
-            />
+              deleteFromList={() => props.deleteFromList(product.id)}
+              wishlist={props.wishlist ? props.wishlist : []}
+              addToCartHandler={() => props.addToCartHandler && props.addToCartHandler(product.id)}
+              // handleDecreaseCart={() => props.handleDecreaseCart(product.id)}
+               />
           ))}
         </TableBody>
       </Table>

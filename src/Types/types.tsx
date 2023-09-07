@@ -33,7 +33,7 @@ export type stateType = {
    wishlist: productType[];
    cart: {
       cartItems: productType[]
-      cartTotalAmount: []
+      cartTotalAmount: number
    };
    countUp: [];
    about: { url: string };

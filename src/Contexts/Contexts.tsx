@@ -1,9 +1,19 @@
-import { createContext } from "react";
+import { createContext, ReactNode, Dispatch, SetStateAction } from "react";
+import { productType } from "../Types/types"
 
 
-export const cartContext = createContext({
+type CartContextType = {
+   productQuantity: number;
+   setProductQuantity: Dispatch<SetStateAction<number>>;
+   cartItems: productType[]; 
+   wishlistItems: productType[];
+};
+
+export const cartContext = createContext<CartContextType>({
    productQuantity: 1,
-   setProductQuantity: null
+   setProductQuantity: ()=>{},
+   cartItems: [],
+   wishlistItems: [],
 })
 
 

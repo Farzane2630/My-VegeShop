@@ -2,7 +2,7 @@ import "./_Products.scss";
 
 // @ts-ignore
 import { v4 as uuidv4 } from "uuid";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Hero from "../../components/Hero/Hero";
@@ -13,10 +13,9 @@ import ProductItem from "../../components/ProductItem/ProductItem";
 import CustomPagination from "../../Utils/Pagination/Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCategory } from "../../Redux/Reducers/products";
-import { addToCart } from "../../Redux/Reducers/cartItems";
-import { addTolist } from "../../Redux/Reducers/Wishlist";
 import { toast } from "react-toastify";
 import { productType, stateType } from "../../Types/types";
+import { cartContext } from "../../Contexts/Contexts";
 
 export default function Products() {
   const dispatch = useDispatch();
@@ -27,8 +26,10 @@ export default function Products() {
     (state: stateType) => state.products.selectedCategory
   );
 
-  const filterProductsHandel = (category: { id: string, title: string }) => {
-    dispatch(selectCategory(category));
+  const filterProductsHandel = (categoryTitle: string) => {
+    console.log(categoryTitle);
+    
+    dispatch(selectCategory(categoryTitle));
   };
 
   const filteredProducts =
@@ -36,9 +37,10 @@ export default function Products() {
       ? products.filter((product) => product.category === selectedCategory)
       : products;
 
+
   //pagination
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsCountPerPage = 8;
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const itemsCountPerPage: number = 8;
   const indexOfLastItem = currentPage * itemsCountPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsCountPerPage;
   const shownItems = filteredProducts.slice(indexOfFirstItem, indexOfLastItem);
@@ -48,9 +50,13 @@ export default function Products() {
   };
 
   //cartItems
-  const cartItems = useSelector((state: stateType) => state.cart.cartItems);
+
+  const cart = useContext(cartContext)
+
+  const [cartItems, setCartItems] = useState<productType[]>([])
 
   const addToCartHandler = (product: productType) => {
+
     if (cartItems.length > 1 && cartItems.includes(product)) {
       toast.error("You have added this Item before!", {
         position: "top-right",
@@ -73,30 +79,19 @@ export default function Products() {
         progress: undefined,
         theme: "colored",
       });
-      const updatedProductObject = {
-        id: uuidv4(),
-        title: product.title,
-        price: product.price,
-        quantity: 1,
-        rate: product.rate,
-        sold: product.sold,
-        cover: product.cover,
-        inStock: product.inStock,
-        category: product.category,
-        discount: product.discount,
-      };
-      // @ts-ignore
-      dispatch(addToCart(updatedProductObject));
+
+      setCartItems([...cart.cartItems, product])
     }
+
   };
 
 
   //wishlist
-  const wishlist = useSelector((state: stateType) => state.wishlist);
+  const [wishlistItems, setWishlistItems] = useState<productType[]>([])
 
   const wishlistHandler = (productID: string) => {
     const favoriteItem = products.find((product) => product.id === productID);
-    if (favoriteItem && wishlist.includes(favoriteItem)) {
+    if (favoriteItem && wishlistItems.includes(favoriteItem)) {
       toast.error("You have added this Item before!", {
         position: "top-right",
         autoClose: 500,
@@ -119,7 +114,7 @@ export default function Products() {
         theme: "colored",
       });
     }
-    dispatch(addTolist(favoriteItem));
+    favoriteItem && setWishlistItems([...cart.wishlistItems, favoriteItem])
   };
 
   return (
@@ -136,13 +131,13 @@ export default function Products() {
       </Hero>
 
       <ul className="filter">
-        {categories.map((category: { title: string, id: string }) => (
+        {categories.map((cat) => (
           <li
             className="filter-item"
-            onClick={() => filterProductsHandel(category)}  // category.title => category
-            key={category.id}
+            onClick={() => filterProductsHandel(cat.title)} 
+            key={cat.id}
           >
-            {category.title}
+            {cat.title}
           </li>
         ))}
       </ul>

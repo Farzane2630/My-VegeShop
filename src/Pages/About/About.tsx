@@ -19,11 +19,11 @@ export default function About() {
   const bestPrice = useSelector((state: stateType) => state.bestPrice);
   const countUpelems = useSelector((state: stateType) => state.countUp);
 
-  const aboutURL = useSelector((state: stateType) => state.about);
+  const aboutURL = useSelector((state: stateType) => state.about.url);
+  
 
   return (
     <>
-      <h1>this is about</h1>
       <Header />
       <Hero notIndex={true}>
         <SwiperSlide
@@ -39,7 +39,7 @@ export default function About() {
         <Grid item xs={12} md={6} className="about-media">
           <div
             className="about-img"
-            style={{ backgroundImage: `url(${aboutURL.url})` }}
+            style={{ backgroundImage: `url(${aboutURL})` }}
           >
             <div className="play-icon-bg">
               <PlayArrowIcon className="play-icon" />
