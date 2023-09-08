@@ -16,6 +16,8 @@ import { selectCategory } from "../../Redux/Reducers/products";
 import { toast } from "react-toastify";
 import { productType, stateType } from "../../Types/types";
 import { cartContext } from "../../Contexts/Contexts";
+import { addTolist } from "../../Redux/Reducers/Wishlist";
+
 
 export default function Products() {
   const dispatch = useDispatch();
@@ -54,22 +56,10 @@ export default function Products() {
   const [cartItems, setCartItems] = useState<productType[]>([])
 
   const addToCartHandler = (productID: string) => {
-    
-    const selectedProduct = products && products.find(product => product.id === productID)
-    console.log(selectedProduct);
 
-    if (cartItems && selectedProduct && cartItems.includes(selectedProduct)) {
-      toast.error("You have added this Item before!", {
-        position: "top-right",
-        autoClose: 500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-    } else {
+    const selectedProduct = products && products.find(product => product.id === productID)
+    // @ts-ignore
+    if (selectedProduct && !cartItems.includes(selectedProduct)) {
       toast.success("Item added to cart", {
         position: "top-right",
         autoClose: 500,
@@ -81,49 +71,52 @@ export default function Products() {
         theme: "colored",
       });
       cart.localStorageCartItems(selectedProduct)
-
       setCartItems(cart.cartItems)
-
+    } else {
+      toast.error("You have added this Item before!", {
+        position: "top-right",
+        autoClose: 500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     }
   }
 
+  // wishlist
+  const wishlist = useSelector((state: stateType) => state.wishlist)
 
-
-
-  //wishlist
-  const [wishlistItems, setWishlistItems] = useState<productType[]>([])
-
-  // const wishlistHandler = (productID: string) => {
-  //   const favoriteItem = products.find((product) => product.id === productID);
-  //   if (favoriteItem && wishlistItems.includes(favoriteItem)) {
-  //     toast.error("You have added this Item before!", {
-  //       position: "top-right",
-  //       autoClose: 500,
-  //       hideProgressBar: false,
-  //       closeOnClick: true,
-  //       pauseOnHover: true,
-  //       draggable: true,
-  //       progress: undefined,
-  //       theme: "colored",
-  //     });
-  //   } else {
-  //     toast.success("Item has been added to your wishlist", {
-  //       position: "top-right",
-  //       autoClose: 500,
-  //       hideProgressBar: false,
-  //       closeOnClick: true,
-  //       pauseOnHover: true,
-  //       draggable: true,
-  //       progress: undefined,
-  //       theme: "colored",
-  //     });
-  //   }
-  //   // favoriteItem && setWishlistItems([...cart.wishlistItems, favoriteItem])
-  // };
-
-  const wishlistHandler = (proId: string) => {
-    console.log(proId);
-  }
+  const wishlistHandler = (productID: string) => {
+    const favorieItem = products.find((product) => product.id === productID);
+    // @ts-ignore
+    if (wishlist.includes(favorieItem)) {
+      toast.error("You have added this Item before!", {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    } else {
+      toast.success("Item added to wishlist", {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+      dispatch(addTolist(favorieItem));
+    }
+  };
 
   return (
     <>

@@ -8,49 +8,17 @@ import { cartContext } from "./Contexts/Contexts"
 export default function App() {
 
   const [cartItems, setCartItems] = useState<productType[]>([])
-  const [wishlistItems, setWishlistItems] = useState<productType[]>([])
-  // const [localStorageCartItems, setLocalStorageCartItems] = useState([])
-  // const [localStorageWishlistItems, setLocalStorageWishlistItems] = useState([])
-
-
 
   const localStorageCartItems = (selectedItem: productType) => {
-
     setCartItems([...cartItems, selectedItem])
-
-    localStorage.setItem("cart", JSON.stringify({ cartItems }));
-
     return [...cartItems, selectedItem]
-
   }
-
-  const localStorageWishlistItems = useCallback((selectedItem: productType) => {
-
-    setWishlistItems([...wishlistItems, selectedItem])
-
-    localStorage.setItem("wishlist", JSON.stringify({ wishlistItems }));
-
-  }, [])
 
   useEffect(() => {
 
-    const getcartItems = localStorage.getItem('cart')
-    let localStorageCartItems;
+    localStorage.setItem("cart", JSON.stringify({ cartItems }));
 
-    try {
-      localStorageCartItems = JSON.parse(getcartItems || '');
-      
-    } catch (error) {
-      
-      console.error('Error parsing JSON:', error);
-    }
-    // setCartItems(localStorageCartItems)
-    
-    // const getWishlistItems = localStorage.getItem('wishlist') ?? ''
-    // const wishlistItems = JSON.parse(getWishlistItems)
-    // setWishlistItems(wishlistItems)
-
-  }, [cartItems, wishlistItems])
+  }, [cartItems])
 
 
   useEffect(
@@ -67,8 +35,7 @@ export default function App() {
         productQuantity: 0,
         setProductQuantity: () => { },
         localStorageCartItems: localStorageCartItems,
-        cartItems: cartItems,
-        localStorageWishlistItems: () => { },
+        cartItems: cartItems
       }}>
 
         <AllRoutes />

@@ -3,10 +3,11 @@ import ProductItem from "../ProductItem/ProductItem";
 import { Box, Grid } from "@mui/material";
 import "./_Products.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../../Redux/Reducers/cartItems";
 import { addTolist } from "../../Redux/Reducers/Wishlist";
 import { toast } from "react-toastify";
-import { stateType } from "../../Types/types";
+import { productType, stateType } from "../../Types/types";
+import { useContext, useState } from "react";
+import { cartContext } from "../../Contexts/Contexts";
 
 
 export default function Products() {
@@ -14,14 +15,17 @@ export default function Products() {
   const products = useSelector((state: stateType) => state.products.products);
 
   //cartItems
-  const cartItems = useSelector((state: stateType) => state.cart);
+  const cart = useContext(cartContext)
+
+  const [cartItems, setCartItems] = useState<productType[]>([])
+
   const addToCartHandler = (productID: string) => {
-    const selectedItem = products.find((product: { id: string }) => product.id === productID);
+    const selectedProduct = products && products.find(product => product.id === productID)
     // @ts-ignore
-    if (cartItems.includes(selectedItem)) {
-      toast.error("You have added this Item before!", {
+    if (selectedProduct && !cartItems.includes(selectedProduct)) {
+      toast.success("Item added to cart", {
         position: "top-right",
-        autoClose: 1000,
+        autoClose: 500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -29,12 +33,12 @@ export default function Products() {
         progress: undefined,
         theme: "colored",
       });
+      cart.localStorageCartItems(selectedProduct)
+      setCartItems(cart.cartItems)
     } else {
-      // @ts-ignore
-      dispatch(addToCart(selectedItem));
-      toast.success("Item added to cart", {
+      toast.error("You have added this Item before!", {
         position: "top-right",
-        autoClose: 1000,
+        autoClose: 500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -43,7 +47,7 @@ export default function Products() {
         theme: "colored",
       });
     }
-  };
+  }
 
   // wishlist
   const wishlist = useSelector((state: stateType) => state.wishlist)
