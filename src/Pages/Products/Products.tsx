@@ -27,8 +27,6 @@ export default function Products() {
   );
 
   const filterProductsHandel = (categoryTitle: string) => {
-    console.log(categoryTitle);
-    
     dispatch(selectCategory(categoryTitle));
   };
 
@@ -55,9 +53,12 @@ export default function Products() {
 
   const [cartItems, setCartItems] = useState<productType[]>([])
 
-  const addToCartHandler = (product: productType) => {
+  const addToCartHandler = (productID: string) => {
+    
+    const selectedProduct = products && products.find(product => product.id === productID)
+    console.log(selectedProduct);
 
-    if (cartItems.length > 1 && cartItems.includes(product)) {
+    if (cartItems && selectedProduct && cartItems.includes(selectedProduct)) {
       toast.error("You have added this Item before!", {
         position: "top-right",
         autoClose: 500,
@@ -79,43 +80,50 @@ export default function Products() {
         progress: undefined,
         theme: "colored",
       });
+      cart.localStorageCartItems(selectedProduct)
 
-      setCartItems([...cart.cartItems, product])
+      setCartItems(cart.cartItems)
+
     }
+  }
 
-  };
+
 
 
   //wishlist
   const [wishlistItems, setWishlistItems] = useState<productType[]>([])
 
-  const wishlistHandler = (productID: string) => {
-    const favoriteItem = products.find((product) => product.id === productID);
-    if (favoriteItem && wishlistItems.includes(favoriteItem)) {
-      toast.error("You have added this Item before!", {
-        position: "top-right",
-        autoClose: 500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-    } else {
-      toast.success("Item has been added to your wishlist", {
-        position: "top-right",
-        autoClose: 500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-    }
-    favoriteItem && setWishlistItems([...cart.wishlistItems, favoriteItem])
-  };
+  // const wishlistHandler = (productID: string) => {
+  //   const favoriteItem = products.find((product) => product.id === productID);
+  //   if (favoriteItem && wishlistItems.includes(favoriteItem)) {
+  //     toast.error("You have added this Item before!", {
+  //       position: "top-right",
+  //       autoClose: 500,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       progress: undefined,
+  //       theme: "colored",
+  //     });
+  //   } else {
+  //     toast.success("Item has been added to your wishlist", {
+  //       position: "top-right",
+  //       autoClose: 500,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       progress: undefined,
+  //       theme: "colored",
+  //     });
+  //   }
+  //   // favoriteItem && setWishlistItems([...cart.wishlistItems, favoriteItem])
+  // };
+
+  const wishlistHandler = (proId: string) => {
+    console.log(proId);
+  }
 
   return (
     <>
@@ -134,7 +142,7 @@ export default function Products() {
         {categories.map((cat) => (
           <li
             className="filter-item"
-            onClick={() => filterProductsHandel(cat.title)} 
+            onClick={() => filterProductsHandel(cat.title)}
             key={cat.id}
           >
             {cat.title}
@@ -147,7 +155,7 @@ export default function Products() {
           <Grid key={product.id} item xs={12} sm={6} md={3} p={3}>
             <ProductItem
               addToWishlist={() => wishlistHandler(product.id)}
-              addToCart={() => addToCartHandler(product)}
+              addToCart={() => addToCartHandler(product.id)}
               name={product.title}
               img={product.cover}
               price={product.price}

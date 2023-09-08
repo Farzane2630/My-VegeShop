@@ -5,15 +5,17 @@ import { productType } from "../Types/types"
 type CartContextType = {
    productQuantity: number;
    setProductQuantity: Dispatch<SetStateAction<number>>;
-   cartItems: productType[]; 
-   wishlistItems: productType[];
+   localStorageCartItems: Function;
+   cartItems: productType[],
+   localStorageWishlistItems: Dispatch<SetStateAction<productType>>;
 };
 
 export const cartContext = createContext<CartContextType>({
-   productQuantity: 1,
-   setProductQuantity: ()=>{},
+   productQuantity: 0,
+   setProductQuantity: () => { },
+   localStorageCartItems: () => { },
    cartItems: [],
-   wishlistItems: [],
+   localStorageWishlistItems: () => { },
 })
 
 

@@ -22,17 +22,12 @@ export default function Cart() {
   const cart = useContext(cartContext)
   const [cartItems, setCartItems] = useState<productType[]>([])
 
+  useEffect(()=>{
+    setCartItems(cart.cartItems)
+  }, [cartItems])
+
 
   const totalPrice = useSelector((state: stateType) => state.cart.cartTotalAmount);
-
-
-  useEffect(() => {
-
-    // const cartItems = localStorage.setItem("cart item", JSON.stringify(cart.cartItems))
-    setCartItems(cartItems)
-
-    // console.log(cartItems);
-  }, [cart.cartItems])
 
   const deleteFromList = (productID: string) => {
     const reminedItems = cartItems.filter(product => product.id !== productID)
