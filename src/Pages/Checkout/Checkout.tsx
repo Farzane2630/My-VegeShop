@@ -24,22 +24,21 @@ export default function Checkout() {
 
   // payment
   const context = useContext(cartContext);
-  const purchasedItems = useSelector((state: stateType) => state.cart);
+  const purchasedItems = useSelector((state: stateType) => state.cart.cartItems);
 
   // @ts-ignore
-  const subTotal: number = purchasedItems.reduce((total: number, product: productType) => {
+  const subTotal: number = purchasedItems && purchasedItems.reduce((total: number, product: productType) => {
     return total + product.price * context.productQuantity;
   }, 0)
 
   // @ts-ignore
-  const totalDiscount: number = purchasedItems.reduce((total: number, product: productType) => {
+  const totalDiscount: number = purchasedItems && purchasedItems.reduce((total: number, product: productType) => {
     if (product.discount !== 0) {
       return total + product.discount * context.productQuantity;
     }
     return 0
   }, 0);
 
-  console.log(totalDiscount);
 
   const total =
     Number(totalDiscount) !== 0
@@ -67,8 +66,8 @@ export default function Checkout() {
           className="slide-1"
           style={{ backgroundImage: `url(${bg[1]})` }}
         >
-          <p className="product-page"> Home Products </p>
-          <h1 className="product-title">Product info</h1>
+          <p className="product-page"> Checkout Page </p>
+          <h1 className="product-title"> Billing info </h1>
         </SwiperSlide>
       </Hero>
       <div className="checkout-container">
@@ -76,8 +75,8 @@ export default function Checkout() {
 
         <Grid container className="checkout-grid-container">
           <Grid item xs={12} lg={6} className="info-table">
-            <InputAdornments />
             <FormControl>
+            <InputAdornments />
               <RadioGroup
                 row
                 aria-labelledby="demo-row-radio-buttons-group-label"
@@ -96,6 +95,7 @@ export default function Checkout() {
               </RadioGroup>
             </FormControl>
           </Grid>
+
           <Grid className="payment" item lg={6} xs={12}>
             <div className="cart-total">
               <h3 className="head">Cart total</h3>
@@ -103,27 +103,28 @@ export default function Checkout() {
               <div className="sub-total">
                 <span>Subtotal</span>
                 <span>
-                  {purchasedItems.length > 0 ? ` $ ${subTotal}` : `$ 00.0`}
+                  {purchasedItems && purchasedItems.length > 0 ? ` $ ${subTotal}` : `$ 00.0`}
                 </span>
               </div>
               <div className="delivery">
                 <span>Delivery</span>
-                <span>{purchasedItems.length > 0 ? ` $ 4.99` : `$ 00.0`}</span>
+                <span>{purchasedItems && purchasedItems.length > 0 ? ` $ 4.99` : `$ 00.0`}</span>
               </div>
               <div className="discount">
                 <span>Discount</span>
                 <span>
-                  {purchasedItems.length > 0 ? ` % ${totalDiscount}` : `%0`}
+                  {purchasedItems && purchasedItems.length > 0 ? ` % ${totalDiscount}` : `%0`}
                 </span>
               </div>
               <hr />
               <div className="total">
                 <span>TOTAL</span>
                 <span className="total-price">
-                  {purchasedItems.length > 0 ? ` $ ${total}` : `$ 00.0`}
+                  {purchasedItems && purchasedItems.length > 0 ? ` $ ${total}` : `$ 00.0`}
                 </span>
               </div>
             </div>
+
             <div className="payment-method">
               <FormControl>
                 <FormLabel

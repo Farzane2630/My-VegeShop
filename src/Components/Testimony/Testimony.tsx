@@ -45,7 +45,7 @@ export default function Testimony() {
         className="mySwiper testimony-slide"
       >
         {usersInfo.map((user: { userID: string, userImgUrl: string, userName: string, userCommentText: string }) => (
-          <SwiperSlide key={user.userID}>
+          <SwiperSlide style={{paddingBottom: "45px"}} key={user.userID}>
             <TestimonyItem
               src={`${user.userImgUrl}`}
               name={user.userName}
