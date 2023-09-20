@@ -17,17 +17,17 @@ import { productsContext } from "../../Contexts/Contexts";
 export default function Cart() {
 
   const bg = useSelector((state: stateType) => state.bgUrl);
-  const cart = useContext(productsContext)
+  const context = useContext(productsContext)
   const [cartItems, setCartItems] = useState<productType[]>([])
 
   useEffect(() => {
-    setCartItems(cart.cartItems)
-  }, [cart.cartItems])
+    setCartItems(context.cartItems)
+  }, [context.cartItems])
 
   const deleteFromList = (productID: string) => {
-    cart.deleteCartItems(productID)
+    context.deleteCartItems(productID)
 
-    setCartItems(cart.cartItems)
+    setCartItems(context.cartItems)
   }
 
   const totalPrice = cartItems.reduce((acc, product) => acc + product.price, 0);
@@ -69,6 +69,7 @@ export default function Cart() {
               variant="contained"
               color="success"
               className="lets-pay-btn"
+              onClick={() => context.setCheckout(true)}
             >
               <Link to="/checkout" className="link">
                 continue and pay

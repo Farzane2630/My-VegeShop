@@ -10,6 +10,8 @@ export default function App() {
   const [cartItems, setCartItems] = useState<productType[]>([])
   const [wishlistItems, setWishlistItems] = useState<productType[]>([])
 
+  const [checkout, setCheckout] = useState<boolean>(false)
+
   // update cartItems
   const localStorageCartItems = (selectedItem: productType) => {
     setCartItems([...cartItems, selectedItem])
@@ -66,6 +68,9 @@ export default function App() {
         wishlistItems: wishlistItems,
         localStorageWishlistItems: localStorageWishlistItems,
         deleteWishlistItems: deleteWishlistItems,
+
+        checkout: checkout,
+        setCheckout: setCheckout
 
         // productQuantity: 0,
         // setProductQuantity: () => { },

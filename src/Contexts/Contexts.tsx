@@ -11,8 +11,9 @@ type productsContextType = {
    localStorageWishlistItems: Function; //function to update wishlist
    deleteWishlistItems: Function;  // handle deleting items from wishlist
 
-   // productQuantity: number;
-   // setProductQuantity: Dispatch<SetStateAction<number>>;
+   checkout: boolean
+   setCheckout:  Dispatch<SetStateAction<boolean>>
+
 };
 
 export const productsContext = createContext<productsContextType>({
@@ -24,8 +25,9 @@ export const productsContext = createContext<productsContextType>({
    localStorageWishlistItems: () => { },
    deleteCartItems: () => { },
 
-   // productQuantity: 0,
-   // setProductQuantity: () => { },
+   checkout: false,
+   setCheckout: ()=>{},
+
 })
 
 

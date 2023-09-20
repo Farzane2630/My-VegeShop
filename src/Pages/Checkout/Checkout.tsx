@@ -1,6 +1,6 @@
 import "./_Checkout.scss";
 
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import Hero from "../../components/Hero/Hero";
 import Footer from "../../components/Footer/Footer";
@@ -21,31 +21,14 @@ import { productType, stateType } from "../../Types/types";
 
 export default function Checkout() {
   const bg = useSelector((state: stateType) => state.bgUrl);
-
-  // payment
-  const context = useContext(productsContext);
-  const purchasedItems = useSelector((state: stateType) => state.cart.cartItems);
-
-  // @ts-ignore
-  const subTotal: number = purchasedItems && purchasedItems.reduce((total: number, product: productType) => {
-    return total + product.price * context.productQuantity;
-  }, 0)
-
-  // @ts-ignore
-  const totalDiscount: number = purchasedItems && purchasedItems.reduce((total: number, product: productType) => {
-    if (product.discount !== 0) {
-      return total + product.discount * context.productQuantity;
-    }
-    return 0
-  }, 0);
-
-
-  const total =
-    Number(totalDiscount) !== 0
-      ? (subTotal * (100 - totalDiscount)) / 100 + 4.99
-      : subTotal + 4.99;
-
   const [isCheckedOut, setIsCheckedOut] = useState(false);
+  const [purchasedItems, setPurchasedItems] = useState<productType[]>([])
+  const context = useContext(productsContext)
+
+  useEffect(()=>{
+    context.checkout && setPurchasedItems(context.cartItems)
+  },[context.cartItems])
+
   const purchaseHandler = () => {
     if (purchasedItems.length > 0) {
       swal({
@@ -57,6 +40,10 @@ export default function Checkout() {
       setIsCheckedOut(true);
     }
   };
+
+  const subtotal: number = purchasedItems.reduce((acc, product) => acc + product.price, 0);
+  const totalDiscount: number = purchasedItems.reduce((acc, product) => acc + product.discount, 0);
+  const total = ((subtotal * (100 - totalDiscount)) / 100) + 4.99  // add delivery cost to the totalPrice
 
   return (
     <>
@@ -76,7 +63,7 @@ export default function Checkout() {
         <Grid container className="checkout-grid-container">
           <Grid item xs={12} lg={6} className="info-table">
             <FormControl>
-            <InputAdornments />
+              <InputAdornments />
               <RadioGroup
                 row
                 aria-labelledby="demo-row-radio-buttons-group-label"
@@ -103,24 +90,24 @@ export default function Checkout() {
               <div className="sub-total">
                 <span>Subtotal</span>
                 <span>
-                  {purchasedItems && purchasedItems.length > 0 ? ` $ ${subTotal}` : `$ 00.0`}
+                  { purchasedItems.length > 0 ? ` $ ${subtotal.toFixed(2)}` : `$ 00.0`}
                 </span>
               </div>
               <div className="delivery">
                 <span>Delivery</span>
-                <span>{purchasedItems && purchasedItems.length > 0 ? ` $ 4.99` : `$ 00.0`}</span>
+                <span>{ purchasedItems.length > 0 ? ` $ 4.99` : `$ 00.0`}</span>
               </div>
               <div className="discount">
                 <span>Discount</span>
                 <span>
-                  {purchasedItems && purchasedItems.length > 0 ? ` % ${totalDiscount}` : `%0`}
+                  { purchasedItems.length > 0 ? ` % ${totalDiscount.toFixed(2)}` : `%0`}
                 </span>
               </div>
               <hr />
               <div className="total">
                 <span>TOTAL</span>
                 <span className="total-price">
-                  {purchasedItems && purchasedItems.length > 0 ? ` $ ${total}` : `$ 00.0`}
+                  { purchasedItems.length > 0 ? ` $ ${total.toFixed(2)}` : `$ 00.0`}
                 </span>
               </div>
             </div>
