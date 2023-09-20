@@ -101,7 +101,7 @@ export default function ProductInfo() {
           </div>
           <button
             className="add-to-cart"
-            onClick={addToCartHandler(mainProduct.id)}>
+            onClick={()=> mainProduct && addToCartHandler(mainProduct.id)}>
             Add to Cart
           </button>
         </Grid>
