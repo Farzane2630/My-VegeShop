@@ -15,7 +15,7 @@ import { productType } from "../../Types/types";
 function ProductRow(props: {
   product: productType,
   deleteFromList: Function,
-  wishlist: productType[],
+  wishlist: boolean,
   addToCartHandler: Function,
   // handleDecreaseCart: Function
 }) {
@@ -92,7 +92,7 @@ function ProductRow(props: {
 export default function BasicTable(props: {
   products: productType[],
   deleteFromList: Function,
-  wishlist?: productType[],
+  wishlist?: boolean,
   addToCartHandler?: Function,
   // handleDecreaseCart: Function
 }) {
@@ -121,7 +121,7 @@ export default function BasicTable(props: {
               key={product.title}
               product={product}
               deleteFromList={() => props.deleteFromList(product.id)}
-              wishlist={props.wishlist ? props.wishlist : []}
+              wishlist={false}
               addToCartHandler={() => props.addToCartHandler && props.addToCartHandler(product.id)}
               // handleDecreaseCart={() => props.handleDecreaseCart(product.id)}
                />

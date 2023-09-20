@@ -11,7 +11,7 @@ import BasicTable from "../../Utils/Table/Table";
 import ShowAlert from "../../Utils/Alert/Alert";
 import { cartContext } from "../../Contexts/Contexts";
 import { TextField } from "@mui/material";
-import { addToCart } from "../../Redux/Reducers/cartItems";
+// import { addToCart } from "../../Redux/Reducers/cartItems";
 import { toast } from "react-toastify";
 
 import { stateType } from "../../Types/types";
@@ -31,36 +31,36 @@ export default function WishList() {
   };
 
   //add to cart
-  const cartItems = useSelector((state: stateType) => state.cart.cartItems);
+  // const cartItems = useSelector((state: stateType) => state.cart.cartItems);
 
-  const addToCartHandler = (productID: string) => {
-    const selectedItem = wishlist.find((product) => product.id === productID);
-    if (selectedItem && cartItems.includes(selectedItem)) {
-      toast.error("You have added this Item before!", {
-        position: "top-right",
-        autoClose: 500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-    } else {
-      toast.success("Item has been added to your Cart", {
-        position: "top-right",
-        autoClose: 500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-      // @ts-ignore
-      dispatch(addToCart(selectedItem));
-    }
-  };
+  // const addToCartHandler = (productID: string) => {
+  //   const selectedItem = wishlist.find((product) => product.id === productID);
+  //   if (selectedItem && cartItems.includes(selectedItem)) {
+  //     toast.error("You have added this Item before!", {
+  //       position: "top-right",
+  //       autoClose: 500,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       progress: undefined,
+  //       theme: "colored",
+  //     });
+  //   } else {
+  //     toast.success("Item has been added to your Cart", {
+  //       position: "top-right",
+  //       autoClose: 500,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       progress: undefined,
+  //       theme: "colored",
+  //     });
+  //     // @ts-ignore
+  //     dispatch(addToCart(selectedItem));
+  //   }
+  // };
 
   //total price
   const context = useContext(cartContext);

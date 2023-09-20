@@ -4,36 +4,33 @@ import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import Hero from "../../components/Hero/Hero";
 import { SwiperSlide } from "swiper/react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import BasicTable from "../../Utils/Table/Table";
-import { removeFromCart } from "../../Redux/Reducers/cartItems";
 import TextField from "@mui/material/TextField";
 import ShowAlert from "../../Utils/Alert/Alert";
 import { Button, Grid } from "@mui/material";
-import { Link, json } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { productType, stateType } from "../../Types/types";
 import { useContext, useEffect, useState } from "react";
 import { cartContext } from "../../Contexts/Contexts";
 
 export default function Cart() {
-  const dispatch = useDispatch();
 
   const bg = useSelector((state: stateType) => state.bgUrl);
   const cart = useContext(cartContext)
   const [cartItems, setCartItems] = useState<productType[]>([])
 
-  useEffect(()=>{
+  useEffect(() => {
     setCartItems(cart.cartItems)
   }, [cartItems])
-
-
-  const totalPrice = useSelector((state: stateType) => state.cart.cartTotalAmount);
 
   const deleteFromList = (productID: string) => {
     const reminedItems = cartItems.filter(product => product.id !== productID)
 
     setCartItems(reminedItems)
   }
+
+  const totalPrice = cartItems.reduce((acc, product) => acc + product.price, 0);
 
   return (
     <>
