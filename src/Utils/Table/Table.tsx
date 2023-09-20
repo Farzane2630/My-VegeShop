@@ -11,6 +11,8 @@ import IconButton from "@mui/material/IconButton";
 import MouseOverPopover from "../Poper";
 import { Link } from "react-router-dom";
 import { productType } from "../../Types/types";
+import { useContext, useState } from "react";
+import { productsContext } from "../../Contexts/Contexts";
 
 function ProductRow(props: {
   product: productType,
@@ -19,6 +21,23 @@ function ProductRow(props: {
   addToCartHandler: Function,
   // handleDecreaseCart: Function
 }) {
+
+  const context = useContext(productsContext)
+
+  const [quantity, setQuantity] = useState<number>()
+  const [itemTotalPrice, setItemTotalPrice] = useState<number>()
+
+  const handleInputChange = (event: Event, productId: string) => {
+    // @ts-ignore
+    setQuantity(event.target.value)
+
+    const targetItem = props.wishlist
+      ? context.wishlistItems.find(item => item.id === productId)
+      : context.cartItems.find(item => item.id === productId)
+    // @ts-ignore
+    setItemTotalPrice(targetItem && targetItem.price * event.target.value)
+
+  }
   return (
     <TableRow
       key={props.product.title}
@@ -65,25 +84,19 @@ function ProductRow(props: {
       <TableCell className="table-body-cell" align="center">
         ${" "}
         {props.product.discount
-          ? ((props.product.price * (100 - props.product.discount)) / 100).toFixed(3)
+          ? ((props.product.price * (100 - props.product.discount)) / 100).toFixed(2)
           : props.product.price}
       </TableCell>
       <TableCell className="table-body-cell" align="center">
         <input
           className="count-input"
-        // value={}
-        // onChange={(e) => setproductQuantity(props.product.id, e)}
+          value={quantity}
+          // @ts-ignore
+          onChange={(event) => handleInputChange(event, props.product.id)}
         />
       </TableCell>
       <TableCell className="table-body-cell" align="center">
-        {props.product.discount !== 0 && props.product.quantity && props.product.quantity > 1
-          ? ((props.product.price * (100 - props.product.discount)) / 100) *
-          props.product.quantity
-          : props.product.discount !== 0 && props.product.quantity && props.product.quantity <= 1
-            ? props.product.price * ((100 - props.product.discount) / 100)
-            : props.product.discount === 0 && props.product.quantity && props.product.quantity > 1
-              ? props.product.price * props.product.quantity
-              : ""}
+        {itemTotalPrice?.toFixed(2)}
       </TableCell>
     </TableRow>
   );
@@ -94,7 +107,6 @@ export default function BasicTable(props: {
   deleteFromList: Function,
   wishlist?: boolean,
   addToCartHandler?: Function,
-  // handleDecreaseCart: Function
 }) {
   return (
     <TableContainer className="table-container">
@@ -123,8 +135,7 @@ export default function BasicTable(props: {
               deleteFromList={() => props.deleteFromList(product.id)}
               wishlist={false}
               addToCartHandler={() => props.addToCartHandler && props.addToCartHandler(product.id)}
-              // handleDecreaseCart={() => props.handleDecreaseCart(product.id)}
-               />
+            />
           ))}
         </TableBody>
       </Table>
