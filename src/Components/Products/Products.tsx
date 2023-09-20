@@ -7,7 +7,7 @@ import { addTolist } from "../../Redux/Reducers/Wishlist";
 import { toast } from "react-toastify";
 import { productType, stateType } from "../../Types/types";
 import { useContext, useState } from "react";
-import { cartContext } from "../../Contexts/Contexts";
+import { productsContext } from "../../Contexts/Contexts";
 
 
 export default function Products() {
@@ -15,7 +15,7 @@ export default function Products() {
   const products = useSelector((state: stateType) => state.products.products);
 
   //cartItems
-  const cart = useContext(cartContext)
+  const cart = useContext(productsContext)
 
   const [cartItems, setCartItems] = useState<productType[]>([])
 

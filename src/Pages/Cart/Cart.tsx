@@ -12,12 +12,12 @@ import { Button, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 import { productType, stateType } from "../../Types/types";
 import { useContext, useEffect, useState } from "react";
-import { cartContext } from "../../Contexts/Contexts";
+import { productsContext } from "../../Contexts/Contexts";
 
 export default function Cart() {
 
   const bg = useSelector((state: stateType) => state.bgUrl);
-  const cart = useContext(cartContext)
+  const cart = useContext(productsContext)
   const [cartItems, setCartItems] = useState<productType[]>([])
 
   useEffect(() => {

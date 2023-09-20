@@ -15,7 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectCategory } from "../../Redux/Reducers/products";
 import { toast } from "react-toastify";
 import { productType, stateType } from "../../Types/types";
-import { cartContext } from "../../Contexts/Contexts";
+import { productsContext } from "../../Contexts/Contexts";
 import { addTolist } from "../../Redux/Reducers/Wishlist";
 
 
@@ -51,7 +51,7 @@ export default function Products() {
 
   //cartItems
 
-  const cart = useContext(cartContext)
+  const cart = useContext(productsContext)
 
   const [cartItems, setCartItems] = useState<productType[]>([])
 
@@ -87,12 +87,15 @@ export default function Products() {
   }
 
   // wishlist
-  const wishlist = useSelector((state: stateType) => state.wishlist)
+  const wishlist = useContext(productsContext)
+
+  const [wishlistItems, setWishlistItems] = useState<productType[]>([])
+
 
   const wishlistHandler = (productID: string) => {
-    const favorieItem = products.find((product) => product.id === productID);
+    const favorieItem = products && products.find((product) => product.id === productID);
     // @ts-ignore
-    if (wishlist.includes(favorieItem)) {
+    if (favorieItem && wishlistItems.includes(favorieItem)) {
       toast.error("You have added this Item before!", {
         position: "top-right",
         autoClose: 1000,
@@ -114,7 +117,8 @@ export default function Products() {
         progress: undefined,
         theme: "colored",
       });
-      dispatch(addTolist(favorieItem));
+      wishlist.localStorageWishlistItems(favorieItem)
+      setWishlistItems(wishlist.wishlistItems)
     }
   };
 

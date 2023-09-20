@@ -1,73 +1,38 @@
 import "./_WishList.scss";
 
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import Hero from "../../components/Hero/Hero";
 import { SwiperSlide } from "swiper/react";
 import Footer from "../../components/Footer/Footer";
-import { useDispatch, useSelector } from "react-redux";
-import { removeFromList } from "../../Redux/Reducers/Wishlist";
+import { useSelector } from "react-redux";
 import BasicTable from "../../Utils/Table/Table";
 import ShowAlert from "../../Utils/Alert/Alert";
-import { cartContext } from "../../Contexts/Contexts";
+import { productsContext } from "../../Contexts/Contexts";
 import { TextField } from "@mui/material";
-// import { addToCart } from "../../Redux/Reducers/cartItems";
-import { toast } from "react-toastify";
 
-import { stateType } from "../../Types/types";
+import { productType, stateType } from "../../Types/types";
 
 export default function WishList() {
+
   const bg = useSelector((state: stateType) => state.bgUrl);
-  const wishlist = useSelector((state: stateType) => state.wishlist);
-  const dispatch = useDispatch();
+  const wishlist = useContext(productsContext)
+  const [wishlistItems, setWishlistItems] = useState<productType[]>([])
 
-  //delete
+  useEffect(() => {
+    setWishlistItems(wishlist.wishlistItems)
+  }, [wishlistItems])
+
   const deleteFromList = (productID: string) => {
-    const remainsProducts = wishlist.filter(
-      (product) => product.id !== productID
-    );
+    const reminedItems = wishlistItems.find(product => product.id !== productID)
+    
+  }
 
-    dispatch(removeFromList(remainsProducts));
-  };
+  const totalPrice = wishlistItems.reduce((acc, product) => acc + product.price, 0);
 
-  //add to cart
-  // const cartItems = useSelector((state: stateType) => state.cart.cartItems);
+  const addToCartHandler = () => {
 
-  // const addToCartHandler = (productID: string) => {
-  //   const selectedItem = wishlist.find((product) => product.id === productID);
-  //   if (selectedItem && cartItems.includes(selectedItem)) {
-  //     toast.error("You have added this Item before!", {
-  //       position: "top-right",
-  //       autoClose: 500,
-  //       hideProgressBar: false,
-  //       closeOnClick: true,
-  //       pauseOnHover: true,
-  //       draggable: true,
-  //       progress: undefined,
-  //       theme: "colored",
-  //     });
-  //   } else {
-  //     toast.success("Item has been added to your Cart", {
-  //       position: "top-right",
-  //       autoClose: 500,
-  //       hideProgressBar: false,
-  //       closeOnClick: true,
-  //       pauseOnHover: true,
-  //       draggable: true,
-  //       progress: undefined,
-  //       theme: "colored",
-  //     });
-  //     // @ts-ignore
-  //     dispatch(addToCart(selectedItem));
-  //   }
-  // };
-
-  //total price
-  const context = useContext(cartContext);
-
-  const totalPrice = wishlist.reduce((total, product) => {
-    return total + product.price * context.productQuantity;
-  }, 0);
+  }
 
   return (
     <>
@@ -83,10 +48,10 @@ export default function WishList() {
         </SwiperSlide>
       </Hero>
 
-      {wishlist.length !== 0 ? (
+      {wishlistItems.length !== 0 ? (
         <>
           <BasicTable
-            products={wishlist}
+            products={wishlistItems}
             deleteFromList={deleteFromList}
             wishlist={true}
             addToCartHandler={addToCartHandler}

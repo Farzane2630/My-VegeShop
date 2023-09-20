@@ -1,24 +1,31 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import AllRoutes from "./Routes";
 import store from "./Redux/Store";
 import { Provider } from "react-redux";
 import { productType } from "./Types/types";
-import { cartContext } from "./Contexts/Contexts"
+import { productsContext } from "./Contexts/Contexts"
 
 export default function App() {
 
   const [cartItems, setCartItems] = useState<productType[]>([])
+  const [wishlistItems, setWishlistItems] = useState<productType[]>([])
 
   const localStorageCartItems = (selectedItem: productType) => {
     setCartItems([...cartItems, selectedItem])
     return [...cartItems, selectedItem]
   }
+  const localStorageWishlistItems = (selectedItem: productType) => {
+    setWishlistItems([...wishlistItems, selectedItem])
+    return [...wishlistItems, selectedItem]
+  }
 
   useEffect(() => {
-
     localStorage.setItem("cart", JSON.stringify({ cartItems }));
-
   }, [cartItems])
+
+  useEffect(() => {
+    localStorage.setItem("wishlist", JSON.stringify({ wishlistItems }));
+  }, [wishlistItems])
 
 
   useEffect(
@@ -31,15 +38,17 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <cartContext.Provider value={{
+      <productsContext.Provider value={{
         productQuantity: 0,
         setProductQuantity: () => { },
         localStorageCartItems: localStorageCartItems,
-        cartItems: cartItems
+        localStorageWishlistItems: localStorageWishlistItems,
+        cartItems: cartItems,
+        wishlistItems: wishlistItems,
       }}>
 
         <AllRoutes />
-      </cartContext.Provider>
+      </productsContext.Provider>
     </Provider>
   );
 }

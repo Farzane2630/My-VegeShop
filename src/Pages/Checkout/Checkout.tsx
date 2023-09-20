@@ -15,7 +15,7 @@ import Checkbox from "@mui/material/Checkbox";
 import FormLabel from "@mui/material/FormLabel";
 import RadioGroup from "@mui/material/RadioGroup";
 import { Link } from "react-router-dom";
-import { cartContext } from "../../Contexts/Contexts";
+import { productsContext } from "../../Contexts/Contexts";
 import swal from "sweetalert";
 import { productType, stateType } from "../../Types/types";
 
@@ -23,7 +23,7 @@ export default function Checkout() {
   const bg = useSelector((state: stateType) => state.bgUrl);
 
   // payment
-  const context = useContext(cartContext);
+  const context = useContext(productsContext);
   const purchasedItems = useSelector((state: stateType) => state.cart.cartItems);
 
   // @ts-ignore
