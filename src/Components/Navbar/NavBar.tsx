@@ -6,12 +6,12 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Link } from "react-router-dom";
-// import { useSelector } from "react-redux";
-// import { stateType } from "../../Types/types";
+import { useContext } from "react";
+import { productsContext } from "../../Contexts/Contexts";
 
 export default function NavBar() {
 
-  // const selectedProducts = useSelector((state: stateType) => state.cart.cartItems)
+const context = useContext(productsContext)
 
   return (
     <Navbar expand="lg" className="nav-main">
@@ -68,7 +68,7 @@ export default function NavBar() {
             <Nav.Link href="/cart" className="nav-item cart-elem">
               <Link to="/cart" className="link">
                 <ShoppingCartIcon />
-                {/* <span className="orders-count">0</span> */}
+                <span className="orders-count">[{context.cartItems && context.cartItems.length}]</span>
               </Link>
             </Nav.Link>
           </Nav>
