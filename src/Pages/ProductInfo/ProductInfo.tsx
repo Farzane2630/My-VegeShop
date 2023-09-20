@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Header from "../../components/Header/Header";
 import Hero from "../../components/Hero/Hero";
 import { SwiperSlide } from "swiper/react";
@@ -6,16 +6,13 @@ import "swiper/css";
 import "./_ProductInfo.scss";
 import Footer from "../../components/Footer/Footer";
 import { Grid } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 import BasicRating from "../../Utils/Rating/Rating";
-// import { addToCart } from "../../Redux/Reducers/cartItems";
-import { toast } from "react-toastify";
 import { productType, stateType } from "../../Types/types";
+import { productsContext } from "../../Contexts/Contexts";
 
 export default function ProductInfo() {
-  const dispatch = useDispatch();
-  const [isSelected, setIsSelected] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<number>(0);
 
   const bg = useSelector((state: stateType) => state.bgUrl);
@@ -24,38 +21,11 @@ export default function ProductInfo() {
   const { productID } = useParams();
   const mainProduct = products.find((product: productType) => product.id === productID);
 
-  // const cartItems = useSelector((state: stateType) => state.cart.cartItems);
-  // const addToCartHandler = (id: string) => {
-  //   if (!isSelected && inputValue > 0) {
+  const Context = useContext(productsContext)
 
-  //     if (mainProduct && cartItems.includes(mainProduct)) {
-  //       toast.error("You have added this Item before!", {
-  //         position: "top-right",
-  //         autoClose: 500,
-  //         hideProgressBar: false,
-  //         closeOnClick: true,
-  //         pauseOnHover: true,
-  //         draggable: true,
-  //         progress: undefined,
-  //         theme: "colored",
-  //       });
-  //     } else {
-  //       toast.success("Item has been added to your Cart", {
-  //         position: "top-right",
-  //         autoClose: 500,
-  //         hideProgressBar: false,
-  //         closeOnClick: true,
-  //         pauseOnHover: true,
-  //         draggable: true,
-  //         progress: undefined,
-  //         theme: "colored",
-  //       });
-  //       // @ts-ignore
-  //       dispatch(addToCart(mainProduct));
-  //       setIsSelected(true);
-  //     }
-  //   }
-  // };
+  const addToCartHandler = (productId: string) => {
+    Context.localStorageCartItems(productId)
+  }
 
   return (
     <>
@@ -131,10 +101,7 @@ export default function ProductInfo() {
           </div>
           <button
             className="add-to-cart"
-            onClick={event => {
-              event.preventDefault()
-              addToCartHandler
-            }}>
+            onClick={addToCartHandler(mainProduct.id)}>
             Add to Cart
           </button>
         </Grid>

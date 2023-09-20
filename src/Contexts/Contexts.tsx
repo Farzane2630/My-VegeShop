@@ -13,7 +13,6 @@ type productsContextType = {
 
    checkout: boolean
    setCheckout:  Dispatch<SetStateAction<boolean>>
-
 };
 
 export const productsContext = createContext<productsContextType>({
@@ -27,7 +26,6 @@ export const productsContext = createContext<productsContextType>({
 
    checkout: false,
    setCheckout: ()=>{},
-
 })
 
 
