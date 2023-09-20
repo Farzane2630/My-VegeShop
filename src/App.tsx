@@ -14,14 +14,28 @@ export default function App() {
     setCartItems([...cartItems, selectedItem])
     return [...cartItems, selectedItem]
   }
+  const deleteCartItems = (itemId: string) => {
+    const remindedItems = cartItems.filter(item => item.id !== itemId)
+
+    setCartItems(remindedItems)
+  }
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify({ cartItems }));
+  }, [cartItems])
+
+
   const localStorageWishlistItems = (selectedItem: productType) => {
     setWishlistItems([...wishlistItems, selectedItem])
     return [...wishlistItems, selectedItem]
   }
 
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify({ cartItems }));
-  }, [cartItems])
+  const deleteWishlistItems = (itemId: string) => {
+
+    const remindedItems = wishlistItems.filter(item => item.id !== itemId)
+
+    setWishlistItems(remindedItems)
+
+  }
 
   useEffect(() => {
     localStorage.setItem("wishlist", JSON.stringify({ wishlistItems }));
@@ -43,6 +57,8 @@ export default function App() {
         setProductQuantity: () => { },
         localStorageCartItems: localStorageCartItems,
         localStorageWishlistItems: localStorageWishlistItems,
+        deleteWishlistItems: deleteWishlistItems,
+        deleteCartItems: deleteCartItems,
         cartItems: cartItems,
         wishlistItems: wishlistItems,
       }}>

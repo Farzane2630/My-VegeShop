@@ -7,6 +7,8 @@ type productsContextType = {
    setProductQuantity: Dispatch<SetStateAction<number>>;
    localStorageCartItems: Function;
    localStorageWishlistItems: Function;
+   deleteWishlistItems: Function;
+   deleteCartItems: Function;
    cartItems: productType[]
    wishlistItems: productType[]
 };
@@ -16,6 +18,8 @@ export const productsContext = createContext<productsContextType>({
    setProductQuantity: () => { },
    localStorageCartItems: () => { },
    localStorageWishlistItems: () => { },
+   deleteWishlistItems: () => { },
+   deleteCartItems: () => { },
    cartItems: [],
    wishlistItems: []
 })

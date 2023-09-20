@@ -91,7 +91,6 @@ export default function Products() {
 
   const [wishlistItems, setWishlistItems] = useState<productType[]>([])
 
-
   const wishlistHandler = (productID: string) => {
     const favorieItem = products && products.find((product) => product.id === productID);
     // @ts-ignore

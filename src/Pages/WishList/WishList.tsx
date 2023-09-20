@@ -19,13 +19,10 @@ export default function WishList() {
   const wishlist = useContext(productsContext)
   const [wishlistItems, setWishlistItems] = useState<productType[]>([])
 
-  useEffect(() => {
-    setWishlistItems(wishlist.wishlistItems)
-  }, [wishlistItems])
 
   const deleteFromList = (productID: string) => {
-    const reminedItems = wishlistItems.find(product => product.id !== productID)
-    
+    wishlist.deleteWishlistItems(productID)
+    setWishlistItems(wishlist.wishlistItems)
   }
 
   const totalPrice = wishlistItems.reduce((acc, product) => acc + product.price, 0);
@@ -33,6 +30,10 @@ export default function WishList() {
   const addToCartHandler = () => {
 
   }
+
+  useEffect(() => {
+    setWishlistItems(wishlist.wishlistItems)
+  }, [wishlist.wishlistItems])
 
   return (
     <>

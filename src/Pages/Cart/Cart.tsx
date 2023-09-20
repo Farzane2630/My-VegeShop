@@ -22,12 +22,12 @@ export default function Cart() {
 
   useEffect(() => {
     setCartItems(cart.cartItems)
-  }, [cartItems])
+  }, [cart.cartItems])
 
   const deleteFromList = (productID: string) => {
-    const reminedItems = cartItems.filter(product => product.id !== productID)
+    cart.deleteCartItems(productID)
 
-    setCartItems(reminedItems)
+    setCartItems(cart.cartItems)
   }
 
   const totalPrice = cartItems.reduce((acc, product) => acc + product.price, 0);
