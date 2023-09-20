@@ -11,7 +11,7 @@ const slice = createSlice({
    initialState:[],
    reducers:{},
    extraReducers: builder =>{
-      builder.addCase(fetchServicesData.fulfilled, (state, action)=>{
+      builder.addCase(fetchServicesData.fulfilled, (_state, action)=>{
          return action.payload
       })
    }

@@ -11,7 +11,8 @@ const slice = createSlice({
   initialState: [],
   reducers:{},
   extraReducers: builder =>{
-    builder.addCase(fetchUsersInfo.fulfilled, (state, action)=>{
+    // @ts-ignore
+    builder.addCase(fetchUsersInfo.fulfilled, (_state, action)=>{
       return action.payload
     })
   }

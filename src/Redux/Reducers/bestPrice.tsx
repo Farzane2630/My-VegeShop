@@ -15,7 +15,7 @@ const slice = createSlice({
   initialState: {},
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchProductData.fulfilled, (state, action) => {
+    builder.addCase(fetchProductData.fulfilled, (_state, action) => {
       return action.payload;
     });
   },

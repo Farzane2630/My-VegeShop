@@ -4,18 +4,15 @@ import { Grid, Input, Button } from "@mui/material";
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useSelector, useDispatch } from "react-redux";
-import { getInputValueAction } from "../../Redux/Reducers/InputValue";
-import { stateType } from "../../Types/types";
+import { useState } from "react";
 
 export default function Newsletter() {
 
-  const inputValue = useSelector((state: stateType) => state.inputValue);
+  const [inputValue, setInputValue] = useState<string>("")
 
-  const dispatch = useDispatch();
-
-  const handleChange = (event: { target: { value: any; }; }) => {
-    dispatch(getInputValueAction(event.target.value));
+  const handleChange = (event: Event) => {
+    // @ts-ignore
+    setInputValue(event.target.value)
   };
 
   const notify = () => {
@@ -44,8 +41,8 @@ export default function Newsletter() {
     }
   };
 
-  const goToTop = ()=>{
-    window.scrollTo({top: 0, behavior: "smooth"})
+  const goToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
   return (
@@ -66,7 +63,8 @@ export default function Newsletter() {
             type="email"
             required
             className="subscribe-form"
-            onChange={handleChange}
+            value={inputValue}
+            onChange={(_event) => handleChange}
           />
           <Button
             onClick={notify}

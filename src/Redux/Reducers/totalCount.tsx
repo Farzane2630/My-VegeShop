@@ -5,7 +5,7 @@ const slice = createSlice({
    name: "product count",
    initialState: "",
    reducers: {
-      productCount : (state, action)=> action.payload
+      productCount : (_state, action)=> action.payload
    }
 })
 

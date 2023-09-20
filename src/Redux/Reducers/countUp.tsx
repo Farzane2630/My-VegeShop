@@ -10,8 +10,8 @@ const slice = createSlice({
   name: "count-up",
   initialState: [],
   reducers: {},
-  extraReducer: builder => {
-    builder.addCase(fetchCountUpData.fulfilled, (state, action) => {
+  extraReducers: builder => {
+    builder.addCase(fetchCountUpData.fulfilled, (_state: any, action: { payload: any; }) => {
       return action.payload;
     });
   },

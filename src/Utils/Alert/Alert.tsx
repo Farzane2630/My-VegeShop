@@ -2,7 +2,15 @@
 import Alert from "@mui/material/Alert";
 import MouseOverPopover from "../Poper";
 
-export default function ShowAlert({ variant, type, msg, cart, wishlist }) {
+interface propTypes {
+  variant: string,
+  type: string,
+  msg: string,
+  cart: boolean,
+  wishlist: boolean
+}
+
+export default function ShowAlert(props: propTypes) {
   return (
     <div
       style={{
@@ -12,12 +20,13 @@ export default function ShowAlert({ variant, type, msg, cart, wishlist }) {
         columnGap: 30,
       }}
     >
-      <Alert variant={variant} severity={type}>
-        {msg}
+      {/* @ts-ignore */}
+      <Alert variant={props.variant} severity={props.type}>
+        {props.msg}
       </Alert>
-      {cart ? <MouseOverPopover path="/products/1" PopOverTxt="Let`s shop!" /> : ""}
-      {wishlist ? (
-        <MouseOverPopover path="/products/1" PopOverTxt="Let`s select favorie products!" />
+      {props.cart ? <MouseOverPopover path="/products/1" PopOverTxt="Let`s shop!" target={undefined} /> : ""}
+      {props.wishlist ? (
+        <MouseOverPopover path="/products/1" PopOverTxt="Let`s select favorie products!" target={undefined} />
       ) : (
         ""
       )}

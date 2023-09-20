@@ -10,7 +10,7 @@ const slice = createSlice({
    initialState: [],
    reducers:{},
    extraReducers: builder => {
-      builder.addCase(fetchContactInfo.fulfilled, (state, action) =>{
+      builder.addCase(fetchContactInfo.fulfilled, (_state, action) =>{
          return action.payload
       })
    }

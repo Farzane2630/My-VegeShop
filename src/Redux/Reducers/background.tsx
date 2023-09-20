@@ -15,7 +15,7 @@ const slice = createSlice({
   initialState: [],
   reducers:{},
   extraReducers: (builder) => {
-    builder.addCase(fetchBackgroundUrl.fulfilled, (state, action) => {
+    builder.addCase(fetchBackgroundUrl.fulfilled, (_state, action) => {
       return action.payload;
     });
   },

@@ -83,7 +83,7 @@ export default function WishList() {
           variant="filled"
           type="error"
           msg="You Have not select any product yet!"
-          wishlist={true} cart={undefined} />
+          wishlist={true} cart={false} />
       )}
 
       <Footer about={false} />

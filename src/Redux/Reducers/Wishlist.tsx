@@ -7,7 +7,7 @@ const slice = createSlice({
   reducers: {
     // @ts-ignore
     addTolist: (state, action) => [...state, action.payload],
-    removeFromList: (state, action) => action.payload,
+    removeFromList: (_state, action) => action.payload,
   },
 });
 

@@ -11,7 +11,7 @@ const slice = createSlice({
    initialState: {},
    reducers: {},
    extraReducers: builder =>{
-      builder.addCase(fetchAboutData.fulfilled, (state, action)=> action.payload)
+      builder.addCase(fetchAboutData.fulfilled, (_state, action)=> action.payload)
    }
 })
 

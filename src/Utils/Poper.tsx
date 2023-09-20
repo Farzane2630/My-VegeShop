@@ -1,17 +1,15 @@
 import * as React from "react";
 import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
-
 import IconButton from "@mui/material/IconButton";
-import DeleteIcon from "@mui/icons-material/Delete";
-import AlarmIcon from "@mui/icons-material/Alarm";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { Link } from "react-router-dom";
 
-export default function MouseOverPopover({ PopOverTxt, target , path}) {
+export default function MouseOverPopover(props: { PopOverTxt: string, target?: string, path: string }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handlePopoverOpen = (event) => {
+  const handlePopoverOpen = (_event: Event) => {
+    // @ts-ignore
     setAnchorEl(event.currentTarget);
   };
 
@@ -26,10 +24,12 @@ export default function MouseOverPopover({ PopOverTxt, target , path}) {
       <Typography
         aria-owns={open ? "mouse-over-popover" : undefined}
         aria-haspopup="true"
-        onMouseEnter={handlePopoverOpen}
+        onMouseEnter={(_event) => handlePopoverOpen}
         onMouseLeave={handlePopoverClose}
       >
-        <Link to={path} className="link">
+        {/* @ts-ignore */}
+        <Link to={props.path} className="link">
+          {/* @ts-ignore */}
           <IconButton color="black" aria-label="add to shopping cart">
             <AddShoppingCartIcon />
           </IconButton>
@@ -53,7 +53,7 @@ export default function MouseOverPopover({ PopOverTxt, target , path}) {
         onClose={handlePopoverClose}
         disableRestoreFocus
       >
-        <Typography sx={{ p: 1 }}> {PopOverTxt} </Typography>
+        <Typography sx={{ p: 1 }}> {props.PopOverTxt} </Typography>
       </Popover>
     </div>
   );
