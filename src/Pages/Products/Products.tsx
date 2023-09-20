@@ -2,7 +2,7 @@ import "./_Products.scss";
 
 // @ts-ignore
 import { v4 as uuidv4 } from "uuid";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Hero from "../../components/Hero/Hero";
@@ -16,13 +16,14 @@ import { selectCategory } from "../../Redux/Reducers/products";
 import { toast } from "react-toastify";
 import { productType, stateType } from "../../Types/types";
 import { productsContext } from "../../Contexts/Contexts";
-import { addTolist } from "../../Redux/Reducers/Wishlist";
 
 
 export default function Products() {
   const dispatch = useDispatch();
   const bg = useSelector((state: stateType) => state.bgUrl);
   const products = useSelector((state: stateType) => state.products.products);
+
+  // filter products based on category
   const categories = useSelector((state: stateType) => state.products.categories);
   const selectedCategory = useSelector(
     (state: stateType) => state.products.selectedCategory
@@ -55,10 +56,14 @@ export default function Products() {
 
   const [cartItems, setCartItems] = useState<productType[]>([])
 
+  useEffect(() => {
+    setCartItems(cart.cartItems)
+  }, [cart.cartItems])
+
   const addToCartHandler = (productID: string) => {
 
     const selectedProduct = products && products.find(product => product.id === productID)
-    // @ts-ignore
+
     if (selectedProduct && !cartItems.includes(selectedProduct)) {
       toast.success("Item added to cart", {
         position: "top-right",
@@ -91,9 +96,13 @@ export default function Products() {
 
   const [wishlistItems, setWishlistItems] = useState<productType[]>([])
 
+  useEffect(() => {
+    setWishlistItems(wishlist.wishlistItems)
+  }, [wishlist.wishlistItems])
+
   const wishlistHandler = (productID: string) => {
     const favorieItem = products && products.find((product) => product.id === productID);
-    // @ts-ignore
+
     if (favorieItem && wishlistItems.includes(favorieItem)) {
       toast.error("You have added this Item before!", {
         position: "top-right",

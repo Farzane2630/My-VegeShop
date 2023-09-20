@@ -19,21 +19,26 @@ export default function WishList() {
   const wishlist = useContext(productsContext)
   const [wishlistItems, setWishlistItems] = useState<productType[]>([])
 
+// update wishlist items in DOM
+  useEffect(() => {
+    setWishlistItems(wishlist.wishlistItems)
+  }, [wishlist.wishlistItems])
+
+  const totalPrice = wishlistItems.reduce((acc, product) => acc + product.price, 0);
 
   const deleteFromList = (productID: string) => {
+    // to filter wishlist
     wishlist.deleteWishlistItems(productID)
+
+    //to update wishlist items in DOM after filter
     setWishlistItems(wishlist.wishlistItems)
   }
 
-  const totalPrice = wishlistItems.reduce((acc, product) => acc + product.price, 0);
 
   const addToCartHandler = () => {
 
   }
 
-  useEffect(() => {
-    setWishlistItems(wishlist.wishlistItems)
-  }, [wishlist.wishlistItems])
 
   return (
     <>

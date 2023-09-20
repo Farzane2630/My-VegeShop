@@ -81,7 +81,7 @@ export default function Cart() {
           variant="filled"
           type="error"
           msg="Cart is Empty!"
-          cart={true} wishlist={undefined} />
+          cart={true} wishlist={false} />
       )}
 
       <Footer about={false} />

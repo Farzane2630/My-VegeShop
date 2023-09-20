@@ -3,25 +3,29 @@ import { productType } from "../Types/types"
 
 
 type productsContextType = {
-   productQuantity: number;
-   setProductQuantity: Dispatch<SetStateAction<number>>;
-   localStorageCartItems: Function;
-   localStorageWishlistItems: Function;
-   deleteWishlistItems: Function;
-   deleteCartItems: Function;
-   cartItems: productType[]
-   wishlistItems: productType[]
+   cartItems: productType[]  // array to store cartItems
+   localStorageCartItems: Function; //function to update cart
+   deleteCartItems: Function;  // handle deleting items from cart
+
+   wishlistItems: productType[]  // array to store wishlistItems
+   localStorageWishlistItems: Function; //function to update wishlist
+   deleteWishlistItems: Function;  // handle deleting items from wishlist
+
+   // productQuantity: number;
+   // setProductQuantity: Dispatch<SetStateAction<number>>;
 };
 
 export const productsContext = createContext<productsContextType>({
-   productQuantity: 0,
-   setProductQuantity: () => { },
-   localStorageCartItems: () => { },
-   localStorageWishlistItems: () => { },
-   deleteWishlistItems: () => { },
-   deleteCartItems: () => { },
    cartItems: [],
-   wishlistItems: []
+   localStorageCartItems: () => { },
+   deleteWishlistItems: () => { },
+   
+   wishlistItems: [],
+   localStorageWishlistItems: () => { },
+   deleteCartItems: () => { },
+
+   // productQuantity: 0,
+   // setProductQuantity: () => { },
 })
 
 

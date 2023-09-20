@@ -10,41 +10,47 @@ export default function App() {
   const [cartItems, setCartItems] = useState<productType[]>([])
   const [wishlistItems, setWishlistItems] = useState<productType[]>([])
 
+  // update cartItems
   const localStorageCartItems = (selectedItem: productType) => {
     setCartItems([...cartItems, selectedItem])
     return [...cartItems, selectedItem]
   }
+
+  //remove Items from cart 
   const deleteCartItems = (itemId: string) => {
     const remindedItems = cartItems.filter(item => item.id !== itemId)
 
+    //update cartItems
     setCartItems(remindedItems)
   }
+
+  // update localstorage (Cart)
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify({ cartItems }));
   }, [cartItems])
 
-
+  // update wishlistItems
   const localStorageWishlistItems = (selectedItem: productType) => {
     setWishlistItems([...wishlistItems, selectedItem])
     return [...wishlistItems, selectedItem]
   }
-
+  //remove Items from wishlist 
   const deleteWishlistItems = (itemId: string) => {
 
     const remindedItems = wishlistItems.filter(item => item.id !== itemId)
-
+    //update wishlistItems
     setWishlistItems(remindedItems)
 
   }
-
+  // update localstorage (wishlist)
   useEffect(() => {
     localStorage.setItem("wishlist", JSON.stringify({ wishlistItems }));
   }, [wishlistItems])
 
 
+  // scroll to top on page load
   useEffect(
     () => {
-      // scroll to top on page load
       window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     }, []
   );
@@ -53,14 +59,16 @@ export default function App() {
   return (
     <Provider store={store}>
       <productsContext.Provider value={{
-        productQuantity: 0,
-        setProductQuantity: () => { },
+        cartItems: cartItems,
         localStorageCartItems: localStorageCartItems,
+        deleteCartItems: deleteCartItems,
+
+        wishlistItems: wishlistItems,
         localStorageWishlistItems: localStorageWishlistItems,
         deleteWishlistItems: deleteWishlistItems,
-        deleteCartItems: deleteCartItems,
-        cartItems: cartItems,
-        wishlistItems: wishlistItems,
+
+        // productQuantity: 0,
+        // setProductQuantity: () => { },
       }}>
 
         <AllRoutes />
