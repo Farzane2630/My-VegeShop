@@ -1,7 +1,7 @@
 import axios from "axios"
 
 export const BASE_URL = axios.create({
-   baseURL: "http://localhost:3000/",
+   baseURL: "https://charming-florentine-18c793.netlify.app/",
    headers: {
       "Content-Type": 'application/json'
    }
