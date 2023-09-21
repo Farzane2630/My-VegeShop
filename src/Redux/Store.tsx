@@ -1,34 +1,29 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import thunkMiddleware from "redux-thunk";
 import dataReducer, {
-  // fetchCategories,
-  // fetchProducts,
+  fetchCategories,
+  fetchProducts,
 } from "./Reducers/products";
-import backgroundReducer, {
-  //  fetchBackgroundUrl
-}
-  from "./Reducers/background";
-import categoryReducer, {
-  // fetchCategory
-} from "./Reducers/categories";
+import backgroundReducer from "./Reducers/background";
+import categoryReducer, {fetchCategory} from "./Reducers/categories";
 import usersReducer, {
-  // fetchUsersInfo
+  fetchUsersInfo
 } from "./Reducers/users";
 import bestPriceReducer, {
-  // fetchProductData 
+  fetchProductData
 } from "./Reducers/bestPrice";
 import servicesReducer, {
-  //  fetchServicesData 
+  fetchServicesData
 } from "./Reducers/Services";
 import wishlistReducer from "./Reducers/Wishlist";
 import countUpReducer, {
-  // fetchCountUpData
+  fetchCountUpData
 } from "./Reducers/countUp";
 import aboutReducer, {
-  // fetchAboutData
+  fetchAboutData
 } from "./Reducers/about";
 import contactReducer, {
-  // fetchContactInfo
+  fetchContactInfo
 } from "./Reducers/contact";
 
 const rootReducer = combineReducers({
@@ -44,21 +39,23 @@ const rootReducer = combineReducers({
   contact: contactReducer,
 });
 
+export type RootState = ReturnType<typeof rootReducer>;
+
 const store = configureStore({
   reducer: rootReducer,
   middleware: [thunkMiddleware],
 });
 
 
-// store.dispatch(fetchProducts());
-// store.dispatch(fetchCategories());
-// store.dispatch(fetchCategory());
+store.dispatch(fetchProducts());
+store.dispatch(fetchCategories());
+store.dispatch(fetchCategory());
 // store.dispatch(fetchBackgroundUrl());
-// store.dispatch(fetchUsersInfo());
-// store.dispatch(fetchServicesData());
-// store.dispatch(fetchCountUpData());
-// store.dispatch(fetchAboutData());
-// store.dispatch(fetchProductData());
-// store.dispatch(fetchContactInfo());
+store.dispatch(fetchUsersInfo());
+store.dispatch(fetchServicesData());
+store.dispatch(fetchCountUpData());
+store.dispatch(fetchAboutData());
+store.dispatch(fetchProductData());
+store.dispatch(fetchContactInfo());
 
 export default store;
