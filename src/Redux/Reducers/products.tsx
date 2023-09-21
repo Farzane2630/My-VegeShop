@@ -1,24 +1,39 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { BASE_URL } from "../../Services/Axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { productType } from "../../Types/types";
 
-export const fetchProducts = createAsyncThunk("fetchProducts", async () => {
-  const response = await BASE_URL.get("/products");
-  return response.data;
-});
+export const fetchProducts = createAsyncThunk<productType[], void>("fetchProducts",
+  async () => {
+    const response = await BASE_URL.get("/products");
+    return response.data as productType[];
+  });
 
-export const fetchCategories = createAsyncThunk("fetchCategories", async () => {
+type categories = {
+  title: string
+  id: string
+}[]
+
+export const fetchCategories = createAsyncThunk<categories, void>("fetchCategories", async () => {
   const response = await BASE_URL.get("/categories");
-  return response.data;
+  return response.data as categories
 });
+
+type initialState = {
+  products: productType[]
+  categories: categories
+  selectedCategory: string
+}
+
+const initialState: initialState = {
+  products: [],
+  categories: [],
+  selectedCategory: ""
+}
 
 export const slice = createSlice({
   name: "products",
-  initialState: {
-    products: [],
-    categories: [],
-    selectedCategory: "",
-  },
+  initialState,
   reducers: {
     selectCategory: (state, action) => {
       state.selectedCategory = action.payload;
