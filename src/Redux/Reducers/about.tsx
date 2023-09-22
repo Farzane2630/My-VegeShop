@@ -3,6 +3,9 @@ import { BASE_URL } from "../../Services/Axios";
 
 export const fetchAboutData = createAsyncThunk<{ url: string }, void>("fetchAboutData", async () => {
    const res = await BASE_URL.get("/about")
+
+   console.log(res.data);
+   
    return res.data as { url: string }
 })
 
