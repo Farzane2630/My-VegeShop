@@ -57,7 +57,7 @@ export default function App() {
     () => {
       window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 
-      const res = BASE_URL.get("/")
+      const res = BASE_URL.get("")
 
    console.log(res);;
     }, []
