@@ -56,4 +56,5 @@ export type productType = {
    category: string,
    discount: number
    quantity?: number
+   count?: number
 }

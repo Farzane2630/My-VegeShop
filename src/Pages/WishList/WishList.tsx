@@ -12,32 +12,71 @@ import { productsContext } from "../../Contexts/Contexts";
 import { TextField } from "@mui/material";
 
 import { productType, stateType } from "../../Types/types";
+import { toast } from "react-toastify";
 
 export default function WishList() {
 
   const bg = useSelector((state: stateType) => state.bgUrl);
-  const wishlist = useContext(productsContext)
+  const context = useContext(productsContext)
   const [wishlistItems, setWishlistItems] = useState<productType[]>([])
+  const products = useSelector((state: stateType) => state.products.products);
 
-// update wishlist items in DOM
+
+  // update wishlist items in DOM
   useEffect(() => {
-    setWishlistItems(wishlist.wishlistItems)
-  }, [wishlist.wishlistItems])
+    setWishlistItems(context.wishlistItems)
+  }, [context.wishlistItems])
 
   const totalPrice = wishlistItems.reduce((acc, product) => acc + product.price, 0);
 
   const deleteFromList = (productID: string) => {
     // to filter wishlist
-    wishlist.deleteWishlistItems(productID)
+    context.deleteWishlistItems(productID)
 
     //to update wishlist items in DOM after filter
-    setWishlistItems(wishlist.wishlistItems)
+    setWishlistItems(context.wishlistItems)
   }
 
+  const cart = useContext(productsContext)
 
-  const addToCartHandler = () => {
+  const [cartItems, setCartItems] = useState<productType[]>([])
 
+  useEffect(() => {
+    setCartItems(cart.cartItems)
+  }, [cart.cartItems])
+
+  const addToCartHandler = (productID: string) => {
+
+    const selectedProduct = products && products.find(product => product.id === productID)
+
+    if (selectedProduct && !cartItems.includes(selectedProduct)) {
+      toast.success("Item added to cart", {
+        position: "top-right",
+        autoClose: 500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+      cart.localStorageCartItems(selectedProduct)
+      setCartItems(cart.cartItems)
+    } else {
+      toast.error("You have added this Item before!", {
+        position: "top-right",
+        autoClose: 500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+    deleteFromList(productID)
   }
+
 
 
   return (
@@ -70,12 +109,12 @@ export default function WishList() {
               padding: "0 15rem",
             }}
           >
-            <TextField
+            {/* <TextField
               id="outlined-basic"
               label={`$${totalPrice}`}
               variant="outlined"
               disabled={true}
-            />
+            /> */}
           </div>
         </>
       ) : (

@@ -72,14 +72,13 @@ export default function About() {
         </Grid>
       </Grid>
 
-      <div
+      {/* <div
         className="container-fluid best-price-container"
-        style={{ backgroundImage: `url(${bestPrice.bgUrl})` }}
-      >
+        style={{ backgroundImage: `url(${bestPrice.bgUrl})` }}>
         {countUpelems.map((elem: { end: number, description: string }) => (
           <CountUp end={elem.end} desc={elem.description} duration={3} />
         ))}
-      </div>
+      </div> */}
       <Testimony />
       <OurServices about={true} />
       <Footer about={true} />

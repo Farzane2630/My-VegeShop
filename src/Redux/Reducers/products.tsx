@@ -3,27 +3,29 @@ import { BASE_URL } from "../../Services/Axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { productType } from "../../Types/types";
 
-export const fetchProducts = createAsyncThunk<productType[], void>("fetchProducts",
-  async () => {
-    const response = await BASE_URL.get("/products");
-    return response.data as productType[];
-  });
-
 type categories = {
   title: string
   id: string
 }[]
-
-export const fetchCategories = createAsyncThunk<categories, void>("fetchCategories", async () => {
-  const response = await BASE_URL.get("/categories");
-  return response.data as categories
-});
 
 type initialState = {
   products: productType[]
   categories: categories
   selectedCategory: string
 }
+
+export const fetchProducts = createAsyncThunk<productType[], void>("fetchProducts",
+  async () => {
+    const response = await BASE_URL.get("/products");
+    return response.data as productType[];
+  });
+
+
+export const fetchCategories = createAsyncThunk<categories, void>("fetchCategories", async () => {
+  const response = await BASE_URL.get("/categories");
+  return response.data as categories
+});
+
 
 const initialState: initialState = {
   products: [],

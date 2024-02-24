@@ -46,7 +46,7 @@ export default function Cart() {
       </Hero>
       {cartItems && cartItems.length > 0 ? (
         <>
-          <BasicTable products={cartItems} deleteFromList={deleteFromList} />
+          <BasicTable products={cartItems} deleteFromList={deleteFromList} wishlist={false} />
           <Grid
             item
             xs={12}
@@ -59,12 +59,12 @@ export default function Cart() {
               columnGap: "5%",
             }}
           >
-            <TextField
+            {/* <TextField
               id="outlined-basic"
               label={`$${totalPrice}`}
               variant="outlined"
               disabled={true}
-            />
+            /> */}
             <Button
               variant="contained"
               color="success"

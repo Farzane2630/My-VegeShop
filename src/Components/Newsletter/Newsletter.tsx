@@ -10,10 +10,13 @@ export default function Newsletter() {
 
   const [inputValue, setInputValue] = useState<string>("")
 
-  const handleChange = (event: Event) => {
-    // @ts-ignore
-    setInputValue(event.target.value)
-  };
+  // const handleChange = (event: Event) => {
+  //   // @ts-ignore
+  //   console.log(event.target.value);
+    
+  //   // @ts-ignore
+  //   setInputValue(event.target.value)
+  // };
 
   const notify = () => {
     if (inputValue.length !== 0) {
@@ -63,8 +66,8 @@ export default function Newsletter() {
             type="email"
             required
             className="subscribe-form"
+            onChange={e => console.log(e.target.value)}
             value={inputValue}
-            onChange={(_event) => handleChange}
           />
           <Button
             onClick={notify}

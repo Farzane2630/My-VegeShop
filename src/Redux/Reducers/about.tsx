@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { BASE_URL } from "../../Services/Axios";
 
+const initialState: { url: string } = { url: "" }
+
 export const fetchAboutData = createAsyncThunk<{ url: string }, void>("fetchAboutData", async () => {
    const res = await BASE_URL.get("/about")
 
@@ -9,7 +11,6 @@ export const fetchAboutData = createAsyncThunk<{ url: string }, void>("fetchAbou
    return res.data as { url: string }
 })
 
-const initialState: { url: string } = { url: "" }
 
 const slice = createSlice({
    name: "about",

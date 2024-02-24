@@ -11,7 +11,7 @@ import IconButton from "@mui/material/IconButton";
 import MouseOverPopover from "../Poper";
 import { Link } from "react-router-dom";
 import { productType } from "../../Types/types";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { productsContext } from "../../Contexts/Contexts";
 
 function ProductRow(props: {
@@ -25,19 +25,8 @@ function ProductRow(props: {
   const context = useContext(productsContext)
 
   const [quantity, setQuantity] = useState<number>()
-  const [itemTotalPrice, setItemTotalPrice] = useState<number>()
+  const [itemTotalPrice, setItemTotalPrice] = useState<number>(0)
 
-  const handleInputChange = (event: Event, productId: string) => {
-    // @ts-ignore
-    setQuantity(event.target.value)
-
-    const targetItem = props.wishlist
-      ? context.wishlistItems.find(item => item.id === productId)
-      : context.cartItems.find(item => item.id === productId)
-    // @ts-ignore
-    setItemTotalPrice(targetItem && targetItem.price * event.target.value)
-
-  }
   return (
     <TableRow
       key={props.product.title}
@@ -64,12 +53,8 @@ function ProductRow(props: {
         >
           <DeleteIcon fontSize="inherit" />
         </IconButton>
-        <div className="add-to-cart-btn" onClick={
-          event => {
-            event.preventDefault()
-            props.addToCartHandler
-          }
-        }>
+        {/* @ts-ignore */}
+        <div className="add-to-cart-btn" onClick={props.addToCartHandler}>
           {props.wishlist ? (
             <MouseOverPopover path="" PopOverTxt="ADD to CART!" target={undefined} />
           ) : (
@@ -91,12 +76,21 @@ function ProductRow(props: {
         <input
           className="count-input"
           value={quantity}
-          // @ts-ignore
-          onChange={(event) => handleInputChange(event, props.product.id)}
+          onChange={(event) => {
+            setQuantity(+(event.target.value))
+            props.wishlist ?
+              setItemTotalPrice((context.wishlistItems.find(item => item.id == props.product.id))?.price * event.target.value) :
+              setItemTotalPrice((context.cartItems.find(item => item.id == props.product.id))?.price * event.target.value)
+          }
+          }
         />
       </TableCell>
       <TableCell className="table-body-cell" align="center">
-        {itemTotalPrice?.toFixed(2)}
+        {itemTotalPrice ?
+          itemTotalPrice?.toFixed(2)
+          : props.product.discount
+            ? ((props.product.price * (100 - props.product.discount)) / 100).toFixed(2)
+            : props.product.price}
       </TableCell>
     </TableRow>
   );
@@ -133,7 +127,7 @@ export default function BasicTable(props: {
               key={product.title}
               product={product}
               deleteFromList={() => props.deleteFromList(product.id)}
-              wishlist={false}
+              wishlist={props.wishlist ? true : false}
               addToCartHandler={() => props.addToCartHandler && props.addToCartHandler(product.id)}
             />
           ))}

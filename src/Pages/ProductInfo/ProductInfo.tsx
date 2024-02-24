@@ -19,7 +19,9 @@ export default function ProductInfo() {
 
   const products = useSelector((state: stateType) => state.products.products);
   const { productID } = useParams();
-  const mainProduct = products.find((product: productType) => product.id === productID);
+  const mainProduct = products.find((product: productType) => product.id == productID);
+  console.log(productID);
+  
 
   const Context = useContext(productsContext)
 

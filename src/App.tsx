@@ -4,8 +4,6 @@ import store from "./Redux/Store";
 import { Provider } from "react-redux";
 import { productType } from "./Types/types";
 import { productsContext } from "./Contexts/Contexts"
-import axios from "axios";
-import { BASE_URL } from "./Services/Axios";
 
 export default function App() {
 
@@ -56,24 +54,22 @@ export default function App() {
   useEffect(
     () => {
       window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-
-      const res = BASE_URL.get("")
-
-   console.log(res);;
     }, []
   );
 
-  
+
 
 
   return (
     <Provider store={store}>
       <productsContext.Provider value={{
         cartItems: cartItems,
+        setCartItems: setCartItems,
         localStorageCartItems: localStorageCartItems,
         deleteCartItems: deleteCartItems,
 
         wishlistItems: wishlistItems,
+        setWishlistItems: setWishlistItems,
         localStorageWishlistItems: localStorageWishlistItems,
         deleteWishlistItems: deleteWishlistItems,
 

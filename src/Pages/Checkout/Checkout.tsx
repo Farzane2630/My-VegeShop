@@ -25,9 +25,9 @@ export default function Checkout() {
   const [purchasedItems, setPurchasedItems] = useState<productType[]>([])
   const context = useContext(productsContext)
 
-  useEffect(()=>{
+  useEffect(() => {
     context.checkout && setPurchasedItems(context.cartItems)
-  },[context.cartItems])
+  }, [context.cartItems])
 
   const purchaseHandler = () => {
     if (purchasedItems.length > 0) {
@@ -39,11 +39,13 @@ export default function Checkout() {
       });
       setIsCheckedOut(true);
     }
+    context.setCartItems([])
   };
 
   const subtotal: number = purchasedItems.reduce((acc, product) => acc + product.price, 0);
   const totalDiscount: number = purchasedItems.reduce((acc, product) => acc + product.discount, 0);
-  const total = ((subtotal * (100 - totalDiscount)) / 100) + 4.99  // add delivery cost to the totalPrice
+  // add delivery cost to totalPrice
+  const total = ((subtotal * (100 - totalDiscount)) / 100) + 4.99
 
   return (
     <>
@@ -90,24 +92,24 @@ export default function Checkout() {
               <div className="sub-total">
                 <span>Subtotal</span>
                 <span>
-                  { purchasedItems.length > 0 ? ` $ ${subtotal.toFixed(2)}` : `$ 00.0`}
+                  {purchasedItems.length > 0 ? ` $ ${subtotal.toFixed(2)}` : `$ 00.0`}
                 </span>
               </div>
               <div className="delivery">
                 <span>Delivery</span>
-                <span>{ purchasedItems.length > 0 ? ` $ 4.99` : `$ 00.0`}</span>
+                <span>{purchasedItems.length > 0 ? ` $ 4.99` : `$ 00.0`}</span>
               </div>
               <div className="discount">
                 <span>Discount</span>
                 <span>
-                  { purchasedItems.length > 0 ? ` % ${totalDiscount.toFixed(2)}` : `%0`}
+                  {purchasedItems.length > 0 ? ` % ${totalDiscount.toFixed(2)}` : `%0`}
                 </span>
               </div>
               <hr />
               <div className="total">
                 <span>TOTAL</span>
                 <span className="total-price">
-                  { purchasedItems.length > 0 ? ` $ ${total.toFixed(2)}` : `$ 00.0`}
+                  {purchasedItems.length > 0 ? ` $ ${total.toFixed(2)}` : `$ 00.0`}
                 </span>
               </div>
             </div>
