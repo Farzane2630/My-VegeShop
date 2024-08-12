@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 
 export default function Newsletter() {
-
+// @ts-ignore
   const [inputValue, setInputValue] = useState<string>("")
 
   // const handleChange = (event: Event) => {

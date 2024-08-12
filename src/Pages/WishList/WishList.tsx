@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import BasicTable from "../../Utils/Table/Table";
 import ShowAlert from "../../Utils/Alert/Alert";
 import { productsContext } from "../../Contexts/Contexts";
-import { TextField } from "@mui/material";
+// import { TextField } from "@mui/material";
 
 import { productType, stateType } from "../../Types/types";
 import { toast } from "react-toastify";
@@ -27,7 +27,7 @@ export default function WishList() {
     setWishlistItems(context.wishlistItems)
   }, [context.wishlistItems])
 
-  const totalPrice = wishlistItems.reduce((acc, product) => acc + product.price, 0);
+  // const totalPrice = wishlistItems.reduce((acc, product) => acc + product.price, 0);
 
   const deleteFromList = (productID: string) => {
     // to filter wishlist

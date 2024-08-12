@@ -128,7 +128,7 @@ function Contact() {
           >
             {/* @ts-ignore */}
             <Marker onClick={onMarkerClick} name={"Current location"} />
-
+{/* @ts-ignore */}
             <InfoWindow
               // @ts-ignore
               marker={state.activeMarker}

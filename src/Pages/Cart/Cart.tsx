@@ -6,7 +6,7 @@ import Hero from "../../components/Hero/Hero";
 import { SwiperSlide } from "swiper/react";
 import { useSelector } from "react-redux";
 import BasicTable from "../../Utils/Table/Table";
-import TextField from "@mui/material/TextField";
+// import TextField from "@mui/material/TextField";
 import ShowAlert from "../../Utils/Alert/Alert";
 import { Button, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -30,7 +30,7 @@ export default function Cart() {
     setCartItems(context.cartItems)
   }
 
-  const totalPrice = cartItems.reduce((acc, product) => acc + product.price, 0);
+  // const totalPrice = cartItems.reduce((acc, product) => acc + product.price, 0);
 
   return (
     <>

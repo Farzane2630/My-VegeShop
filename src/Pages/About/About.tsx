@@ -5,7 +5,7 @@ import Testimony from "../../components/Testimony/Testimony";
 import OurServices from "../../components/OurServices/OurServices";
 import { SwiperSlide } from "swiper/react";
 import { useSelector } from "react-redux";
-import CountUp from "../../components/CountUp/CountUp";
+// import CountUp from "../../components/CountUp/CountUp";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { Button, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -16,8 +16,8 @@ import { stateType } from "../../Types/types";
 export default function About() {
 
   const bg = useSelector((state: stateType) => state.bgUrl);
-  const bestPrice = useSelector((state: stateType) => state.bestPrice);
-  const countUpelems = useSelector((state: stateType) => state.countUp);
+  // const bestPrice = useSelector((state: stateType) => state.bestPrice);
+  // const countUpelems = useSelector((state: stateType) => state.countUp);
 
   const aboutURL = useSelector((state: stateType) => state.about.url);
   

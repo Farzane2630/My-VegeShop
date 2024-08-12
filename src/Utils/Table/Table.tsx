@@ -11,7 +11,7 @@ import IconButton from "@mui/material/IconButton";
 import MouseOverPopover from "../Poper";
 import { Link } from "react-router-dom";
 import { productType } from "../../Types/types";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { productsContext } from "../../Contexts/Contexts";
 
 function ProductRow(props: {
@@ -79,7 +79,9 @@ function ProductRow(props: {
           onChange={(event) => {
             setQuantity(+(event.target.value))
             props.wishlist ?
+            // @ts-ignore
               setItemTotalPrice((context.wishlistItems.find(item => item.id == props.product.id))?.price * event.target.value) :
+              // @ts-ignore
               setItemTotalPrice((context.cartItems.find(item => item.id == props.product.id))?.price * event.target.value)
           }
           }
