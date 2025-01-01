@@ -28,14 +28,19 @@
 ## Screenshots
 🏠 homepage
 ![screencapture-localhost-8080-2023-06-03-20_44_26](https://github.com/Farzane2630/vegeefood/assets/110881082/90d1cf01-e964-4049-b49f-a92d9af1837a)
+
 ✨ wishlist
 ![screencapture-localhost-8080-2023-06-03-20_45_57](https://github.com/Farzane2630/vegeefood/assets/110881082/a86559d6-f3e0-4af9-9739-a1540239abf4)
+
 💸 checkout
 ![screencapture-localhost-8080-2023-06-03-20_48_05](https://github.com/Farzane2630/vegeefood/assets/110881082/ed1e41a1-0bd2-4ea0-bc75-81018358ace4)
+
 ☎ contact us
 ![screencapture-localhost-8080-2023-06-03-20_48_40](https://github.com/Farzane2630/vegeefood/assets/110881082/f7b550aa-2bea-4e0f-842c-c6f0b9fba308)
+
 🧙‍♀️ about us
 ![screencapture-localhost-8080-2023-06-03-20_49_12](https://github.com/Farzane2630/vegeefood/assets/110881082/9f127c4e-27ed-4419-a3b8-86971dbb34e2)
+
 🛒 cart
 ![screencapture-localhost-8080-2023-06-03-20_44_03](https://github.com/Farzane2630/vegeefood/assets/110881082/e6edab3b-fa1f-4494-89dc-7e0fb9109629)
 
